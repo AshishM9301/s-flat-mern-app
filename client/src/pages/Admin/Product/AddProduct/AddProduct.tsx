@@ -4,7 +4,7 @@ import Input from "../../../../components/Input/Input";
 
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import ColorInput from "../../../../components/ColorInput/ColorInput";
 import FileInput from "../../../../components/FileInput/FileInput";
 import styles from "./AddProduct.module.css";
@@ -12,6 +12,8 @@ import styles from "./AddProduct.module.css";
 type Props = {};
 
 const AddProduct = (props: Props) => {
+  const imgRef = useRef(null);
+
   type Color = {
     color: string;
   };
@@ -42,14 +44,32 @@ const AddProduct = (props: Props) => {
           <FileInput
             title="Add Image"
             onChange={(file) => {
-              var reader = new FileReader()
-              setImages([...images, { image: file }]})}
+              if (Array.isArray(file)) {
+                let a = [];
+                for (let i = 0; i < file.length; i++) {
+                  a.push({ image: file[i].imgUrl });
+                }
+                setImages([...images, ...a]);
+              } else {
+                setImages([...images, { image: file }]);
+              }
+            }}
           />
-          {images.map((item, index) => (
-            <div>
-              <img src={item.image[0]} />
-            </div>
-          ))}
+          <div style={{ display: "flex", flexWrap: "wrap" }}>
+            {images.map((item, index) => (
+              <div style={{ margin: 10 }}>
+                <img
+                  src={item?.image}
+                  style={{
+                    width: 200 / (images.length * 0.2),
+                    height: 200 / (images.length * 0.2),
+                    maxWidth: 200,
+                    maxHeight: 200,
+                  }}
+                />
+              </div>
+            ))}
+          </div>
           <Input title="Product Name" />
           <Input title="Product Description" />
 

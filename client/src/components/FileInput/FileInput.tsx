@@ -26,9 +26,23 @@ const FileInput = (props: Props) => {
         type="file"
         className={styles.input_files}
         ref={fileRef}
+        multiple
         onChange={(e) => {
-          setFile(e.target.files);
-          props.onChange(e.target.files);
+          let images;
+          if (e.target.files?.length > 2) {
+            let a = [];
+            for (let i = 0; i < e.target.files.length; i++) {
+              let url = URL.createObjectURL(e.target.files[i]);
+              a.push({ imgUrl: url });
+            }
+
+            images = a;
+          } else {
+            images = URL.createObjectURL(e.target.files[0]);
+          }
+          setFile(images);
+
+          props.onChange(images);
         }}
       />
     </div>
