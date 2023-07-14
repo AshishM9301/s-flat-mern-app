@@ -1,19 +1,20 @@
-import React, { useState } from "react";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
+import styles from "./Dropdown.module.css";
 
-
-interface DropDownMenu{
-    menuTitle:string;
+interface DropDownMenu {
+  menuTitle: string;
 }
-interface Props { 
-    title: string;
-    menus:DropDownMenus 
+export type DropDownMenus = Array<DropDownMenu>;
+interface Props {
+  title: string;
+  menus: DropDownMenus;
 }
 const defaultProps: Props = {
   title: "Dropdown",
-  menus:[{menuTitle:'Menu 1'}]
+  menus: [{ menuTitle: "Menu 1" }, { menuTitle: "Menu 2" }],
 };
-
-
 
 const Dropdown = (props: Props) => {
   const [open, setOpen] = useState(false);
@@ -23,15 +24,21 @@ const Dropdown = (props: Props) => {
   };
 
   return (
-    <div className="dropdown">
-      <button onClick={handleOpen}>{props.title}</button>
+    <div className={styles.dropdown}>
+      <button onClick={handleOpen} className={styles.dropdown_button}>
+        <p>{props.title}</p>
+        <p>|</p>
+        <FontAwesomeIcon icon={faChevronDown} />
+      </button>
       {open ? (
-        <ul className="menu">
-         {props.menus.map((item,index)=> {
-            return(<li className="menu-item" key={item.menuTitle.toString()+index}>
-                    <button>{item.menuTitle}</button>
-                </li>)})
-          }
+        <ul className={styles.menu}>
+          {props.menus.map((item, index) => {
+            return (
+              <li className="menu-item" key={index}>
+                <button>{item.menuTitle}</button>
+              </li>
+            );
+          })}
         </ul>
       ) : null}
     </div>
@@ -41,4 +48,3 @@ const Dropdown = (props: Props) => {
 Dropdown.defaultProps = defaultProps;
 
 export default Dropdown;
-export interface DropDownMenus extends Array <DropDownMenu>;

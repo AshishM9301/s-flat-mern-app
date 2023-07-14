@@ -1,0 +1,27 @@
+.d_product{
+    display: flex;
+}
+
+.d_product>div{
+    flex :1 1 100%
+}
+
+.product_data{
+    display: flex;
+    flex-direction: column;
+    background-color: #F5F7FF;
+    padding: 20px 30px;
+    border-radius: 5px;
+}
+
+.colors_container{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+}
+
+.colors_container>*{
+    margin-right: 15px;
+    margin-top: 10px;
+}

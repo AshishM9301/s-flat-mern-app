@@ -11,7 +11,7 @@ const app = express();
 
 const http = require("http").Server(app);
 
-var dev_db_url = config.db.url;
+var dev_db_url = config.DB.URL;
 
 app.use(express.json({ limit: "50mb", extended: true }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
