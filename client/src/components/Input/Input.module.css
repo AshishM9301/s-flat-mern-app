@@ -1,0 +1,19 @@
+.container{
+    margin-top: 10px;
+}
+
+.title_text{
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    line-height: 210%;
+}
+
+.required{
+    color: #C94D3F;
+}
+
+.inputContainer{
+    width: 100%;
+    display: flex;
+}
