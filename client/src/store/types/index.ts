@@ -1,4 +1,11 @@
 import { AddProduct } from "./Product";
-import { LoginResponseData, LoginRequestBody } from "./Auth";
+import { LoginResponseData, LoginRequestBody,SignUpRequestBody } from "./Auth";
+import { AddCategoryRequestBody, AddCategoryResposneBody } from "./Category";
 
-export type { AddProduct, LoginResponseData, LoginRequestBody };
+export type {
+  AddProduct,
+  LoginResponseData,
+  LoginRequestBody,
+  AddCategoryRequestBody,
+  AddCategoryResposneBody,SignUpRequestBody
+};

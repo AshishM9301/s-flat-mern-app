@@ -1,31 +1,42 @@
 @font-face {
-  font-family: 'Poppins-Light';
+  font-family: "Poppins-Light";
   font-family: 300;
-  src: local('Poppins'), url(./assets/fonts/Poppins/Poppins-Light.ttf) format("truetype");
-}
-
-
-@font-face {
-  font-family: 'Poppins';
-  src: local('Poppins'), url(./assets/fonts/Poppins/Poppins-Regular.ttf) format("truetype");
+  src: local("Poppins"),
+    url(./assets/fonts/Poppins/Poppins-Light.ttf) format("truetype");
 }
 
 @font-face {
-  font-family: 'Poppins-Medium';
+  font-family: "Poppins";
+  src: local("Poppins"),
+    url(./assets/fonts/Poppins/Poppins-Regular.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Poppins-Medium";
   font-family: 500;
-  src:local('Poppins'), url(./assets/fonts/Poppins/Poppins-Medium.ttf) format("truetype");
+  src: local("Poppins"),
+    url(./assets/fonts/Poppins/Poppins-Medium.ttf) format("truetype");
 }
 
 @font-face {
-  font-family: 'Poppins-Bold';
+  font-family: "Poppins-SemiBold";
   font-family: 600;
-  src:local('Poppins'), url(./assets/fonts/Poppins/Poppins-Bold.ttf) format("truetype");
+  src: local("Poppins"),
+    url(./assets/fonts/Poppins/Poppins-SemiBold.ttf) format("truetype");
 }
 
 @font-face {
-  font-family: 'Poppins-ExtraBold';
+  font-family: "Poppins-Bold";
   font-family: 700;
-  src:local('Poppins'), url(./assets/fonts/Poppins/Poppins-ExtraBold.ttf) format("truetype");
+  src: local("Poppins"),
+    url(./assets/fonts/Poppins/Poppins-Bold.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Poppins-ExtraBold";
+  font-family: 800;
+  src: local("Poppins"),
+    url(./assets/fonts/Poppins/Poppins-ExtraBold.ttf) format("truetype");
 }
 
 :root {
@@ -39,7 +50,6 @@
 
   /* background-color: #242424; */
   background-color: #fff;
-
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -64,7 +74,7 @@ body {
   min-width: 320px;
   min-height: 100vh; */
 
-  font-family: 'Poppins';
+  font-family: "Poppins";
   font-weight: 400;
 }
 
@@ -73,10 +83,19 @@ h1 {
   line-height: 1.1;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+  margin: 0;
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  padding: 1em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;

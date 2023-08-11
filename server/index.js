@@ -16,34 +16,35 @@ var dev_db_url = config.DB.URL;
 app.use(express.json({ limit: "50mb", extended: true }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
 
-const corsOptions = {
-  origin: [
-    "https://nobleedugroup-3ff8f.web.app/",
-    "https://nobleedugroup-3ff8f.web.app",
-    "http://nobleedugroup-3ff8f.web.app/",
-    "http://localhost:5173",
-    "http://localhost:3000",
-    "http://localhost:3001",
-    "http://localhost:8000",
-    "http://localhost:8001/",
-    "http://127.0.0.1:3000",
-    "http://127.0.0.1:3001",
-    "http://127.0.0.1:8000",
-    "http://127.0.0.1:8003/",
-  ],
-  credentials: true,
-  optionsSuccessStatus: 200,
-};
+// const corsOptions = {
+//   origin: [
+//     "https://nobleedugroup-3ff8f.web.app/",
+//     "https://nobleedugroup-3ff8f.web.app",
+//     "http://nobleedugroup-3ff8f.web.app/",
+//     "http://localhost:5173",
+//     "http://localhost:3000",
+//     "http://localhost:3001",
+//     "http://localhost:8000",
+//     "http://localhost:8001/",
+//     "http://127.0.0.1:3000",
+//     "http://127.0.0.1:3001",
+//     "http://127.0.0.1:8000",
+//     "http://127.0.0.1:8003/",
+//   ],
+//   credentials: true,
+//   optionsSuccessStatus: 200,
+// };
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use(routes);
 
 // mongoose.set("useCreateIndex", true);
 mongoose
   .connect(dev_db_url, {
-    useNewUrlParser: true,
+    useNewUrlParser: true, 
     useUnifiedTopology: true,
+    family: 4,
   })
   .then(() =>
     console.log(`${chalk.green("✓")} ${chalk.blue("MongoDB Connected!")}`)

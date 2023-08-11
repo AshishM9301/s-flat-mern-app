@@ -33,13 +33,9 @@ const userSchema = mongoose.Schema(
     tokenexp: {
       type: String,
     },
-    defaultBillingAddress: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "AddressBook",
-    },
-    defaultShippingAddress: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "AddressBook",
+    verified: {
+      type: Boolean,
+      default: false,
     },
   },
   { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }

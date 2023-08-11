@@ -5,12 +5,14 @@ import Input from "../../components/Input/Input";
 import styles from "./Login.module.css";
 import { useLoginMutation } from "../../store/services/authApi";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useNavigation } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 
 type Props = {};
 
 const Login = (props: Props) => {
+  const navigation = useNavigation();
+
   const [user, setUser] = useState({ email: "", password: "" });
   const navigate = useNavigate();
   const { loginAuth } = useAuth();
@@ -78,7 +80,12 @@ const Login = (props: Props) => {
               <li>Track orders and more</li>
             </ul>
           </div>
-          <Button title="Create An Account" color="#0156FF" textColor="#fff" />
+          <Button
+            title="Create An Account"
+            color="#0156FF"
+            textColor="#fff"
+            onCLick={() => navigate("/signup")}
+          />
         </div>
       </div>
     </div>

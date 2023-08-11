@@ -1,0 +1,17 @@
+.d_product_card {
+  background-color: #f5f7ff;
+  width: 100%;
+  padding: 10px 20px;
+  border-radius: 6px;
+}
+
+.instockContainer {
+  display: flex;
+  align-items: center;
+}
+
+.instock {
+  margin: 0;
+  color: green;
+  margin-left: 10px;
+}

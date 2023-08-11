@@ -9,9 +9,10 @@ const auth = async (req, res, next) => {
     const { accessToken, refreshToken } = generateToken(req.user);
 
     return res.status(200).json({
+      success: true,
       message: "success",
       data: req.user,
-      token: accessToken,
+      // token: accessToken,
       accessToken,
       refreshToken,
     });

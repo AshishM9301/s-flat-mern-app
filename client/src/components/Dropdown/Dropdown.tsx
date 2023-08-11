@@ -5,6 +5,7 @@ import styles from "./Dropdown.module.css";
 
 interface DropDownMenu {
   menuTitle: string;
+  onClick?: () => void;
 }
 export type DropDownMenus = Array<DropDownMenu>;
 interface Props {
@@ -13,21 +14,33 @@ interface Props {
 }
 const defaultProps: Props = {
   title: "Dropdown",
-  menus: [{ menuTitle: "Menu 1" }, { menuTitle: "Menu 2" }],
+  menus: [
+    { menuTitle: "Menu 1", onClick: () => {} },
+    { menuTitle: "Menu 2", onClick: () => {} },
+  ],
 };
 
 const Dropdown = (props: Props) => {
   const [open, setOpen] = useState(false);
+  const [dropDownMenuData, setDropDownMenuData] = useState("");
 
   const handleOpen = () => {
     setOpen(!open);
   };
 
+  console.log(dropDownMenuData);
+
   return (
     <div className={styles.dropdown}>
       <button onClick={handleOpen} className={styles.dropdown_button}>
-        <p>{props.title}</p>
-        <p>|</p>
+        {!dropDownMenuData ? (
+          <>
+            <p>{props.title}</p>
+            <p>|</p>
+          </>
+        ) : (
+          <p>{dropDownMenuData}</p>
+        )}
         <FontAwesomeIcon icon={faChevronDown} />
       </button>
       {open ? (
@@ -35,7 +48,16 @@ const Dropdown = (props: Props) => {
           {props.menus.map((item, index) => {
             return (
               <li className="menu-item" key={index}>
-                <button>{item.menuTitle}</button>
+                <button
+                  onClick={() => {
+                    console.log(item);
+                    setDropDownMenuData(item.menuTitle);
+                    item.onClick();
+                    setOpen(!open);
+                  }}
+                >
+                  {item.menuTitle}
+                </button>
               </li>
             );
           })}

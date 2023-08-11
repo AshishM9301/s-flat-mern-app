@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 
 const productSchema = mongoose.Schema(
   {
+    seller_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "VerifiedUser",
+    },
     slug: {
       type: String,
     },
@@ -10,6 +14,19 @@ const productSchema = mongoose.Schema(
     },
     productDesc: {
       type: String,
+    },
+    inStock: {
+      type: String,
+      default: "0",
+    },
+    offerPrice: {
+      type: String,
+      default: "0",
+    },
+    price: {
+      type: String,
+      default: "0",
+      required: true,
     },
     rating: {
       type: mongoose.Schema.Types.ObjectId,

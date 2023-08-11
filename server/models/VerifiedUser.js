@@ -38,6 +38,14 @@ const verifiedUserSchema = mongoose.Schema(
     tokenexp: {
       type: String,
     },
+    defaultBillingAddress: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "AddressBook",
+    },
+    defaultShippingAddress: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "AddressBook",
+    },
   },
   { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
 );

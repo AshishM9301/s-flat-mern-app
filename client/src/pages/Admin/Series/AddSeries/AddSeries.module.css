@@ -1,0 +1,28 @@
+.container {
+}
+
+.d_card_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.d_card_container > div {
+  flex: 1;
+}
+
+.d_card {
+  width: 300px;
+
+  background-color: #f5f7ff;
+  padding: 5px 20px;
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.6);
+}
+
+.d_card .d_button {
+  display: flex;
+  justify-content: flex-end;
+}

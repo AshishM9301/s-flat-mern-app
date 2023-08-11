@@ -3,6 +3,7 @@ var config = require("../config");
 
 const admin = async (req, res, next) => {
   try {
+    console.log(req.user.role);
     if (!req?.user || req?.user?.role !== "Admin") {
       res.status(402).json({ message: "Not an Admin" });
     } else {

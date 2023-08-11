@@ -16,3 +16,8 @@ export interface UserData {
   role: string;
   _id: string;
 }
+
+
+export interface SignUpRequestBody {
+  body: { email: string; password: string };
+}

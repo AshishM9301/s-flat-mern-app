@@ -1,27 +1,128 @@
-.d_product{
-    display: flex;
+.d_product {
+  display: flex;
+  width: 1200px;
+  margin: 0 auto;
 }
 
-.d_product>div{
-    flex :1 1 100%
+.d_product > div {
+  flex: 1 1 100%;
+  margin: 0 10px;
 }
 
-.product_data{
-    display: flex;
-    flex-direction: column;
-    background-color: #F5F7FF;
-    padding: 20px 30px;
-    border-radius: 5px;
+.product_data {
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f7ff;
+  padding: 20px 30px;
+  border-radius: 5px;
 }
 
-.colors_container{
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-
+.colors_container {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
-.colors_container>*{
-    margin-right: 15px;
-    margin-top: 10px;
+.colors_container > * {
+  margin-right: 15px;
+  margin-top: 10px;
+}
+
+.productSpecContainer,
+.productDetailsContainer,
+.productColorContainer,
+.series,
+.productCategoryContainer,
+.productOfferPriceContainer,
+.productPriceContainer {
+  margin-top: 20px;
+}
+
+.productColorContainer > *,
+.series > *,
+.productCategoryContainer > * {
+  margin-bottom: 10px;
+}
+
+.product_specs {
+  display: flex;
+  flex-direction: column;
+}
+
+.product_spec {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 140px;
+  background-color: #fff;
+  padding: 5px 20px;
+  border-radius: 6px;
+  box-shadow: 0px 0px 4px -1px rgba(0, 0, 0, 0.75);
+
+  position: relative;
+
+  margin: 10px 0;
+}
+
+.product_spec h4 {
+  color: #000;
+  font-family: Poppins-Medium;
+}
+
+.product_spec p {
+  color: #666666;
+}
+
+.product_spec > * {
+  margin: 0;
+  font-weight: 400;
+  font-family: Poppins;
+  font-size: 12px;
+}
+
+.button_specs {
+  background-color: #fff;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  border: 1px solid #efefef;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 9999px;
+  box-shadow: 0px 0px 4px -1px rgba(0, 0, 0, 0.75);
+  outline: none;
+  padding: 0;
+}
+
+.button_specs:hover {
+  box-shadow: 0px 0px 4px -1px rgba(0, 0, 0, 0.95);
+}
+
+.button_specs > * {
+  margin: 0;
+  padding: 0;
+}
+
+.button_detail {
+  background-color: #fff;
+  width: 20px;
+  height: 20px;
+
+  border: 1px solid #efefef;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 9999px;
+  box-shadow: 0px 0px 4px -1px rgba(0, 0, 0, 0.75);
+  outline: none;
+  padding: 0;
+}
+
+.d_product_card {
+  background-color: #f5f7ff;
+  width: 100%;
 }

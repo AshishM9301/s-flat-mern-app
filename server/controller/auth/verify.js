@@ -12,7 +12,7 @@ const verify = async (req, res, next) => {
   const { token } = req.params;
 
   try {
-    const { data } = jwt.decode(token, config.accessSecret);
+    const { data } = jwt.verify(token, config.accessSecret);
 
     const checkUser = await User.findOne({
       _id: ObjectId(data._id),
