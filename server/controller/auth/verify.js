@@ -6,7 +6,7 @@ const User = require("../../models/User");
 const VerifiedUser = require("../../models/VerifiedUser");
 const sendEmail = require("../../services/sendEmail");
 const generateToken = require("../../services/token");
-const verificationConfirmation = require("../../templates/VerificationConfirmation");
+const verificationConfirmation = require("../../templates/verificationConfirmation");
 
 const verify = async (req, res, next) => {
   const { token } = req.params;
