@@ -115,6 +115,8 @@ const AddProduct = (props: Props) => {
   };
 
   const handleSubmit = async () => {
+    console.log(images);
+
     try {
       let body = {
         colors: JSON.stringify(colors),
@@ -135,7 +137,7 @@ const AddProduct = (props: Props) => {
 
       if (images) {
         for (let i = 0; i < images.length; i++) {
-          fd.append("images", images[i]);
+          fd.append(`images${i}`, images[i]);
         }
       }
 

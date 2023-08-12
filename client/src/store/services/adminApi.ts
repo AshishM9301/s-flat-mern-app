@@ -3,6 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { API_URL } from "../../config";
 import type { AddCategoryRequestBody, AddCategoryResposneBody } from "../types";
 import { RootState } from "../store";
+import { ProductsResponseBody } from "../types/Product";
 
 // Define a service using a base URL and expected endpoints
 export const categoryApi = createApi({
@@ -74,6 +75,15 @@ export const categoryApi = createApi({
         },
       }),
     }),
+    sellerProduct: builder.mutation<ProductsResponseBody, {}>({
+      query: () => ({
+        url: "/product/my-products",
+        method: "GET",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      }),
+    }),
   }),
 });
 
@@ -85,4 +95,5 @@ export const {
   useAllCategoryMutation,
   useAllSeriesMutation,
   useAddProductMutation,
+  useSellerProductMutation,
 } = categoryApi;

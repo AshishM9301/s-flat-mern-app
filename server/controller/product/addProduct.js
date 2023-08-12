@@ -16,7 +16,7 @@ const addProduct = async (req, res, next) => {
   const form = new formidable.IncomingForm();
 
   form.multiples = true;
-  form.maxFileSize = 50 * 1024 * 1024; // 5MB
+  // form.maxFileSize = 50 * 1024 * 1024; // 5MB
   form.uploadDir = uploadFolder;
 
   form.parse(req, async (err, fields, files) => {
@@ -31,97 +31,97 @@ const addProduct = async (req, res, next) => {
 
       const uploadMultiFiles = await uploadFile(files);
 
-      // const {
-      //   addImage,
-      //   seriesId,
-      //   categoryId,
-      //   colors,
-      //   name,
-      //   offerPrice,
-      //   price,
-      //   inStock,
-      //   productDesc,
-      //   // productCode,
-      //   productDetails,
-      //   specs,
-      // } = fields;
+      const {
+        addImage,
+        seriesId,
+        categoryId,
+        colors,
+        name,
+        offerPrice,
+        price,
+        inStock,
+        productDesc,
+        // productCode,
+        productDetails,
+        specs,
+      } = fields;
 
-      // const series = await Series.find({ _id: seriesId });
+      const series = await Series.find({ _id: seriesId });
 
-      // // if (!series) {
-      // //   throw createHttpError.NotFound("No Series Found");
-      // // }
-
-      // const category = await Category.find({ _id: categoryId });
-
-      // if (category.length == 0) {
+      // if (!series) {
       //   throw createHttpError.NotFound("No Series Found");
       // }
 
-      // if (!colors) {
-      //   throw createHttpError.NotFound("No Colors Found");
-      // }
+      const category = await Category.find({ _id: categoryId });
 
-      // const AllColors = JSON.parse(colors);
+      if (category.length == 0) {
+        throw createHttpError.NotFound("No Series Found");
+      }
 
-      // if (Array.isArray(AllColors)) {
-      //   throw createHttpError.NotFound("All Colors is Not in Array");
-      // }
+      if (!colors) {
+        throw createHttpError.NotFound("No Colors Found");
+      }
 
-      // if (name || productDesc || productDetails || specs || price || inStock) {
-      //   throw createHttpError.NotFound("Some Details are not provided");
-      // }
+      const AllColors = JSON.parse(colors);
 
-      // const productCode = uuidv4();
-      // let slug = convertToSlug(name);
+      if (Array.isArray(AllColors)) {
+        throw createHttpError.NotFound("All Colors is Not in Array");
+      }
 
-      // let checkSlug = await Product.find({ slug: slug });
-      // do {
-      //   slug = convertToSlug(name + checkSlug.length);
+      if (name || productDesc || productDetails || specs || price || inStock) {
+        throw createHttpError.NotFound("Some Details are not provided");
+      }
 
-      //   checkSlug = await Product.find({ slug: slug });
-      // } while (checkSlug.length > 0);
+      const productCode = uuidv4();
+      let slug = convertToSlug(name);
 
-      // let images = [];
+      let checkSlug = await Product.find({ slug: slug });
+      do {
+        slug = convertToSlug(name + checkSlug.length);
 
-      // for (let i = 0; i < uploadMultiFiles.length; i++) {
-      //   images.push({ imgUrl: uploadMultiFiles[i] });
-      // }
+        checkSlug = await Product.find({ slug: slug });
+      } while (checkSlug.length > 0);
 
-      // const newProduct = new Product({
-      //   addImage,
-      //   slug,
-      //   name,
-      //   productDesc,
-      //   offerPrice,
-      //   price,
-      //   inStock,
-      //   productDetails: JSON.parse(productDetails),
-      //   specs: JSON.parse(specs),
-      //   seriesId,
-      //   category,
-      //   productCode,
-      //   colors: AllColors,
-      //   series,
-      //   images: images,
-      // });
+      let images = [];
 
-      // const product = await newProduct.save();
+      for (let i = 0; i < uploadMultiFiles.length; i++) {
+        images.push({ imgUrl: uploadMultiFiles[i] });
+      }
 
-      // await Category.findOneAndUpdate(
-      //   { _id: categoryId },
-      //   { $set: { products: [...category.product, product._id] } }
-      // );
+      const newProduct = new Product({
+        addImage,
+        slug,
+        name,
+        productDesc,
+        offerPrice,
+        price,
+        inStock,
+        productDetails: JSON.parse(productDetails),
+        specs: JSON.parse(specs),
+        seriesId,
+        category,
+        productCode,
+        colors: AllColors,
+        series,
+        images: images,
+      });
 
-      // if (seriesId) {
-      //   await Series.findOneAndUpdate(
-      //     { _id: seriesId },
-      //     {
-      //       $set: { products: [...category.product, product._id] },
-      //       upsert: true,
-      //     }
-      //   );
-      // }
+      const product = await newProduct.save();
+
+      await Category.findOneAndUpdate(
+        { _id: categoryId },
+        { $set: { products: [...category.product, product._id] } }
+      );
+
+      if (seriesId) {
+        await Series.findOneAndUpdate(
+          { _id: seriesId },
+          {
+            $set: { products: [...category.product, product._id] },
+            upsert: true,
+          }
+        );
+      }
 
       res.status(200).json({
         success: true,
