@@ -9,6 +9,7 @@ const Series = require("../../models/Series");
 const path = require("path");
 const { uploadFile } = require("../../middleware/upload");
 const formidable = require("formidable");
+const Rating = require("../../models/Rating");
 
 const addProduct = async (req, res, next) => {
   const uploadFolder = path.join("server/assets/images");
@@ -23,6 +24,10 @@ const addProduct = async (req, res, next) => {
     try {
       if (err) {
         throw err;
+      }
+
+      if (!fields) {
+        throw createHttpError.NotFound("No Fields Found");
       }
 
       if (!files) {
@@ -46,16 +51,16 @@ const addProduct = async (req, res, next) => {
         specs,
       } = fields;
 
-      const series = await Series.find({ _id: seriesId });
+      const series = await Series.findOne({ _id: seriesId });
 
       // if (!series) {
       //   throw createHttpError.NotFound("No Series Found");
       // }
 
-      const category = await Category.find({ _id: categoryId });
+      const category = await Category.findOne({ _id: categoryId });
 
-      if (category.length == 0) {
-        throw createHttpError.NotFound("No Series Found");
+      if (!category) {
+        throw createHttpError.NotFound("No Category Found");
       }
 
       if (!colors) {
@@ -64,21 +69,27 @@ const addProduct = async (req, res, next) => {
 
       const AllColors = JSON.parse(colors);
 
-      if (Array.isArray(AllColors)) {
+      if (!Array.isArray(AllColors)) {
         throw createHttpError.NotFound("All Colors is Not in Array");
       }
 
-      if (name || productDesc || productDetails || specs || price || inStock) {
+      if (
+        !name ||
+        !productDesc ||
+        !productDetails ||
+        !specs ||
+        !price ||
+        !inStock
+      ) {
         throw createHttpError.NotFound("Some Details are not provided");
       }
 
       const productCode = uuidv4();
-      let slug = convertToSlug(name);
+      let slug = convertToSlug(name[0]);
 
       let checkSlug = await Product.find({ slug: slug });
       do {
         slug = convertToSlug(name + checkSlug.length);
-
         checkSlug = await Product.find({ slug: slug });
       } while (checkSlug.length > 0);
 
@@ -88,36 +99,66 @@ const addProduct = async (req, res, next) => {
         images.push({ imgUrl: uploadMultiFiles[i] });
       }
 
+      // console.log({
+      //   seller_id: req.user._id,
+
+      //   name: name[0],
+      //   productDesc: productDesc[0],
+      //   inStock: inStock[0],
+      //   offerPrice: offerPrice[0],
+      //   price: price[0],
+      //   productCode,
+      //   category: categoryId[0],
+      //   series: seriesId[0],
+      //   color: AllColors,
+      //   productDetails: JSON.parse(productDetails),
+      //   specs: JSON.parse(specs),
+      //   images: images,
+      // });
+
       const newProduct = new Product({
-        addImage,
-        slug,
-        name,
-        productDesc,
-        offerPrice,
-        price,
-        inStock,
-        productDetails: JSON.parse(productDetails),
-        specs: JSON.parse(specs),
-        seriesId,
-        category,
+        seller_id: req.user._id,
+
+        name: name[0],
+        productDesc: productDesc[0],
+        inStock: inStock[0],
+        offerPrice: offerPrice[0],
+        price: price[0],
         productCode,
-        colors: AllColors,
-        series,
+        category: categoryId[0],
+        series: seriesId[0],
+        color: AllColors,
+        productDetails: JSON.stringify(productDetails),
+        specs: JSON.parse(specs),
         images: images,
       });
 
       const product = await newProduct.save();
 
+      let newRating = new Rating({
+        productId: product._id,
+      });
+
+      let rating = await newRating.save();
+      // console.log(category);
+
+      await Product.findOneAndUpdate(
+        {
+          _id: product._id,
+        },
+        { $set: { rating: rating._id } }
+      );
+
       await Category.findOneAndUpdate(
         { _id: categoryId },
-        { $set: { products: [...category.product, product._id] } }
+        { $set: { products: [...category.products, product._id] } }
       );
 
       if (seriesId) {
         await Series.findOneAndUpdate(
           { _id: seriesId },
           {
-            $set: { products: [...category.product, product._id] },
+            $set: { products: [...series.products, product._id] },
             upsert: true,
           }
         );

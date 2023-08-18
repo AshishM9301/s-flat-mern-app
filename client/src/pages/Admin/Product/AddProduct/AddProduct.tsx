@@ -36,16 +36,18 @@ const AddProduct = (props: Props) => {
 
   const [colors, setColors] = useState<Colors>([]);
   const [images, setImages] = useState([]);
+  const [showImages, setShowImages] = useState([]);
+
   const [inStock, setInStock] = useState("0");
   const [rating, setRating] = useState("");
   const [productName, setProductName] = useState("");
   const [productDescription, setProductDescription] = useState("");
   const [productSpec, setProductSpec] = useState({
-    productSpec: "",
-    specValue: "",
+    title: "",
+    value: "",
   });
   const [productSpecs, setProductSpecs] = useState([]);
-  const [prouctDetail, setProuctDetail] = useState("");
+  const [prouctDetail, setProuctDetail] = useState({ title: "" });
   const [productDetails, setProductDetails] = useState([]);
   const [price, setPrice] = useState("");
   const [offerprice, setOfferprice] = useState("");
@@ -58,6 +60,8 @@ const AddProduct = (props: Props) => {
   const [allSeries] = useAllSeriesMutation();
   const [addProduct] = useAddProductMutation();
 
+  // console.log(showImages, ">>>>show");
+
   const handleAddColor = () => {
     const a: Colors = [...colors];
 
@@ -65,7 +69,7 @@ const AddProduct = (props: Props) => {
     setColors(a);
   };
 
-  console.log(images);
+  // console.log(images);
 
   const deleteImage = (item) => {
     let a = [...images];
@@ -114,37 +118,64 @@ const AddProduct = (props: Props) => {
     }
   };
 
-  const handleSubmit = async () => {
-    console.log(images);
+  // const fData = () => {
 
+  //   const fd = new FormData();
+
+  //   console.log(images);
+
+  //   Object.entries(body).forEach(([key, value]) => {
+  //     fd.append(key, value);
+  //   });
+
+  //   if (images) {
+  //     for (let i = 0; i < images.length; i++) {
+  //       fd.append(`images`, images[i]);
+  //     }
+  //   }
+  //   return fd;
+  // };
+
+  const handleSubmit = async () => {
     try {
       let body = {
         colors: JSON.stringify(colors),
         inStock,
         rating,
-        productName,
-        productDescription,
 
-        productSpecs,
-
-        productDetails,
+        productDetails: JSON.stringify(productDetails),
         price,
-        offerprice,
-        productSeries,
-        productCategory,
-      };
-      const fd = new FormData();
+        offerPrice: offerprice,
+        categoryId: productCategory,
 
+        seriesId: productSeries,
+
+        name: productName,
+
+        productDesc: productDescription,
+        // productCode,
+
+        specs: JSON.stringify(productSpecs),
+      };
+
+      console.log("specs-=--->", productSpecs);
+
+      let fd = new FormData();
+
+      console.log(images[0]);
+
+      for (const i in body) {
+        fd.append(i, body[i]);
+      }
       if (images) {
         for (let i = 0; i < images.length; i++) {
-          fd.append(`images${i}`, images[i]);
+          fd.append(`images`, images[i].image);
         }
       }
 
-      Object.entries(body).forEach(([key, value]) => {
-        fd.append(key, value);
-      });
-
+      for (var [key, value] of fd.entries()) {
+        console.log(key, value);
+      }
       await addProduct({ body: fd }).then((res) => {
         console.log(res);
       });
@@ -196,6 +227,28 @@ const AddProduct = (props: Props) => {
     }
   };
 
+  const handleFileChange = async (file) => {
+    console.log(file, "File");
+    if (file.length !== 0) {
+      let a = [];
+      let b = [];
+      let img = "";
+
+      const reader = new FileReader();
+      for (const i in file) {
+        if (file[i] instanceof File) {
+          a.push({ image: file[i] });
+        }
+        // b.push({ imgUrl: img });
+      }
+
+      console.log(a, "asdasd");
+
+      setImages([...images, ...a]);
+      // setShowImages([...showImages, ...b]);
+    }
+  };
+
   useEffect(() => {
     getAllCategories();
     getAllSeries();
@@ -213,22 +266,22 @@ const AddProduct = (props: Props) => {
           <FileInput
             title="Add Image"
             onChange={(file) => {
-              if (Array.isArray(file)) {
-                let a = [];
-                for (let i = 0; i < file.length; i++) {
-                  a.push({ image: file[i].imgUrl });
-                }
-                setImages([...images, ...a]);
-              } else {
-                setImages([...images, { image: file }]);
-              }
+              handleFileChange(file);
+            }}
+            img={(fs) => {
+              // setImages([...images, ...a]);
+              console.log(fs, ">>>>>>>FS");
+              setShowImages([...showImages, ...fs]);
             }}
           />
           <div style={{ display: "flex", flexWrap: "wrap" }}>
-            {images.map((item, index) => (
-              <div style={{ margin: 10, position: "relative" }}>
+            {showImages.map((item, index) => (
+              <div
+                style={{ margin: 10, position: "relative" }}
+                key={index.toString()}
+              >
                 <img
-                  src={item?.image}
+                  src={item.imgUrl}
                   style={{
                     width: 200 / (images.length * 0.2),
                     height: 200 / (images.length * 0.2),
@@ -290,8 +343,8 @@ const AddProduct = (props: Props) => {
                 {productSpecs.map((item, index) => (
                   <>
                     <div className={styles.product_spec} key={index.toString()}>
-                      <h4>{item?.productSpec}</h4>
-                      <p>{item?.specValue}</p>
+                      <h4>{item?.title}</h4>
+                      <p>{item?.value}</p>
                       <button
                         className={styles.button_specs}
                         onClick={() => {
@@ -308,17 +361,17 @@ const AddProduct = (props: Props) => {
             <Input
               title="Product Specs"
               placeholder="Specs Name of the Product"
-              value={productSpec.productSpec}
+              value={productSpec.title}
               onChange={(e) =>
-                setProductSpec({ ...productSpec, productSpec: e.target.value })
+                setProductSpec({ ...productSpec, title: e.target.value })
               }
             />
             <Input
               title="Product Specs Value"
               placeholder="Specs Value of the Product"
-              value={productSpec.specValue}
+              value={productSpec.value}
               onChange={(e) =>
-                setProductSpec({ ...productSpec, specValue: e.target.value })
+                setProductSpec({ ...productSpec, value: e.target.value })
               }
             />
 
@@ -330,11 +383,11 @@ const AddProduct = (props: Props) => {
               onCLick={() => {
                 let a = [...productSpecs];
                 if (
-                  productSpec.productSpec.length > 0 &&
-                  productSpec.specValue.length > 0
+                  productSpec.title.length > 0 &&
+                  productSpec.value.length > 0
                 ) {
                   a.push(productSpec);
-                  setProductSpec({ productSpec: "", specValue: "" });
+                  setProductSpec({ title: "", value: "" });
                   setProductSpecs(a);
                 }
               }}
@@ -348,7 +401,7 @@ const AddProduct = (props: Props) => {
                 {productDetails.map((item, index) => (
                   <>
                     <ul className={styles.product_spec} key={index.toString()}>
-                      <li>{item}</li>
+                      <li>{item.title}</li>
                       <button
                         className={styles.button_detail}
                         onClick={() => {
@@ -365,8 +418,8 @@ const AddProduct = (props: Props) => {
             <Input
               title="Product Details"
               placeholder="Details of Product"
-              value={prouctDetail}
-              onChange={(e) => setProuctDetail(e.target.value)}
+              value={prouctDetail.title}
+              onChange={(e) => setProuctDetail({ title: e.target.value })}
             />
             <Button
               title="+ Add Details"
@@ -375,9 +428,9 @@ const AddProduct = (props: Props) => {
               border="1px solid #000"
               onCLick={() => {
                 let a: Array<string> = [...productDetails];
-                if (prouctDetail.length > 0) {
+                if (prouctDetail.title.length > 0) {
                   a.push(prouctDetail);
-                  setProuctDetail("");
+                  setProuctDetail({ title: "" });
                   setProductDetails(a);
                 }
               }}
@@ -442,23 +495,23 @@ const AddProduct = (props: Props) => {
         <div>
           <ProductCard
             inStock={inStock}
-            images={images}
+            images={showImages}
             rating={rating}
             productName={productName}
             productDescription={productDescription}
             offerprice={offerprice}
             price={price}
           />
-          {showSubmit() && (
-            <Button
-              title="Submit"
-              color={"#efefef"}
-              textColor={"#000"}
-              onCLick={() => {
-                handleSubmit();
-              }}
-            />
-          )}
+          {/* {showSubmit() && ( */}
+          <Button
+            title="Submit"
+            color={"#efefef"}
+            textColor={"#000"}
+            onCLick={() => {
+              handleSubmit();
+            }}
+          />
+          {/* )} */}
         </div>
       </div>
     </div>

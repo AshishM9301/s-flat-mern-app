@@ -44,12 +44,7 @@ const productSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Series",
     },
-    color: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Color",
-      },
-    ],
+    color: [{ color: { type: String } }],
     productDetails: [
       {
         type: String,

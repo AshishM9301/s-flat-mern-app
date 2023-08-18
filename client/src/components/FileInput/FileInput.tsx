@@ -4,6 +4,7 @@ import styles from "./FileInput.module.css";
 type Props = {
   title: string;
   onChange?: (e) => void;
+  img?: (e) => void;
 };
 
 const defaultProps: Props = {
@@ -28,21 +29,29 @@ const FileInput = (props: Props) => {
         ref={fileRef}
         multiple
         onChange={(e) => {
-          let images;
-          if (e.target.files?.length > 2) {
-            let a = [];
-            for (let i = 0; i < e.target.files.length; i++) {
-              let url = URL.createObjectURL(e.target.files[i]);
-              a.push({ imgUrl: url });
-            }
+          // console.log(e.target.files, ">>>>Files");
 
-            images = a;
-          } else {
-            images = URL.createObjectURL(e.target.files[0]);
+          function get_extenstion(file) {
+            return file.name.split(".")[1];
           }
-          setFile(images);
 
-          props.onChange(images);
+          setFile(e.target.files);
+          let object_url = null,
+            div = null,
+            extension = null;
+          let img = [];
+
+          props.onChange(e.target.files);
+          for (const i in e.target.files) {
+            if (e.target.files[i] instanceof File) {
+              extension = get_extenstion(e.target.files[i]);
+
+              object_url = URL.createObjectURL(e.target.files[i]);
+
+              img.push({ imgUrl: object_url });
+            }
+          }
+          props.img(img);
         }}
       />
     </div>

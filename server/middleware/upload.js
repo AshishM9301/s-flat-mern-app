@@ -118,12 +118,13 @@ const isFileValid = (file) => {
 };
 
 const uploadFile = async (files) => {
+  console.log(files);
   const uploadFolder = path.join("server/assets/images");
 
-  if (files?.image?.length < 1) {
+  if (files?.images?.length < 1) {
     //Single file
 
-    const file = files.image;
+    const file = files.images;
 
     // checks if the file is valid
     const isValid = isFileValid(file);
@@ -156,7 +157,7 @@ const uploadFile = async (files) => {
       // checks if the file is valid
       const isValid = isFileValid(file);
 
-      // console.log(isValid);
+      // console.log(...files.images[i]);
 
       // creates a valid name by removing spaces
       const fileName = encodeURIComponent(

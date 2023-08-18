@@ -6,7 +6,7 @@ type Props = {
   title: string;
   color: string;
   textColor: string;
-  onCLick?: () => void;
+  onCLick?: (e) => void;
   border?: string;
 };
 
@@ -20,7 +20,10 @@ const Button = (props: Props) => {
           border: props.border,
         }}
         className={styles.button}
-        onClick={props.onCLick}
+        onClick={(e) => {
+          e.preventDefault();
+          props.onCLick();
+        }}
       >
         <p style={{ color: props.textColor }}>{props.title}</p>
       </button>

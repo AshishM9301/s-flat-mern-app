@@ -12,10 +12,10 @@ const ImageSlider = (props: Props) => {
         {props.images.map((item, index) => (
           <div>
             <img
-              src={item?.image}
+              src={item?.imgUrl}
               style={{
                 width: "100%",
-                height: 400,
+                maxHeight: 400,
                 borderRadius: 6,
                 objectFit: "cover",
               }}

@@ -65,15 +65,17 @@ export const categoryApi = createApi({
         },
       }),
     }),
-    addProduct: builder.mutation<AddCategoryResposneBody, { body: any }>({
-      query: (req) => ({
-        url: "/product/add",
-        method: "POST",
-        body: req.body,
-        headers: {
-          "Content-Type": "multipart/form-data; boundary=something",
-        },
-      }),
+    addProduct: builder.mutation<AddCategoryResposneBody, { body: FormData }>({
+      query: (req) => {
+        return {
+          url: "/product/add",
+          method: "POST",
+          body: req.body,
+          headers: {
+            // "Content-Type": "multipart/form-data; boundary=something",
+          },
+        };
+      },
     }),
     sellerProduct: builder.mutation<ProductsResponseBody, {}>({
       query: () => ({
