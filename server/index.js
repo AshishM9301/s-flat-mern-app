@@ -18,9 +18,6 @@ app.use(express.urlencoded({ limit: "50mb", extended: true }));
 
 // const corsOptions = {
 //   origin: [
-//     "https://nobleedugroup-3ff8f.web.app/",
-//     "https://nobleedugroup-3ff8f.web.app",
-//     "http://nobleedugroup-3ff8f.web.app/",
 //     "http://localhost:5173",
 //     "http://localhost:3000",
 //     "http://localhost:3001",
