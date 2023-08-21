@@ -29,9 +29,6 @@ export const categoryApi = createApi({
         url: "/category/add",
         method: "POST",
         body: req.body,
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
       }),
     }),
     allCategory: builder.mutation<AddCategoryResposneBody, {}>({
@@ -86,6 +83,15 @@ export const categoryApi = createApi({
         },
       }),
     }),
+    deleteProduct: builder.mutation<ProductsResponseBody, { params: string }>({
+      query: (req) => ({
+        url: `/product/${req.params}`,
+        method: "DELETE",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      }),
+    }),
   }),
 });
 
@@ -98,4 +104,5 @@ export const {
   useAllSeriesMutation,
   useAddProductMutation,
   useSellerProductMutation,
+  useDeleteProductMutation,
 } = categoryApi;

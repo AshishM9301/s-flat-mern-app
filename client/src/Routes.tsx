@@ -11,6 +11,7 @@ import VerifyPage from "./pages/Verify/VerifyPage";
 import Dashboard from "./pages/Admin/Dashboard/Dashboard";
 import ProductPage from "./pages/Admin/Product/ProductPage/ProductPage";
 import SellerProductsPage from "./pages/Admin/Product/SellerProductsPage/SellerProductsPage";
+import CategoryPage from "./pages/Admin/Category/CategoryPage/CategoryPage";
 
 const getUserData = () =>
   new Promise((resolve) =>
@@ -74,6 +75,10 @@ export const router = createBrowserRouter([
           {
             path: "my-products",
             element: <ProtectedRoute component={SellerProductsPage} />,
+          },
+          {
+            path: "category",
+            element: <ProtectedRoute component={CategoryPage} />,
           },
         ],
       },

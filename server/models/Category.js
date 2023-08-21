@@ -5,6 +5,19 @@ const categorySchema = mongoose.Schema(
     name: {
       type: String,
     },
+    imgUrl: {
+      type: String,
+    },
+    views: {
+      type: Number,
+      default: 0,
+    },
+    favourite: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "VerifiedUser",
+      },
+    ],
     products: [
       {
         type: mongoose.Schema.Types.ObjectId,

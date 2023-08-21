@@ -1,0 +1,14 @@
+.page_title {
+  margin: 20px 0;
+}
+
+.page_title h1 {
+  font-size: 48px;
+  font-family: "Poppins";
+}
+
+.categories {
+  display: flex;
+  align-items: start;
+  flex-wrap: wrap;
+}

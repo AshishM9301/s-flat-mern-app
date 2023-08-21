@@ -14,6 +14,7 @@ const allSeries = require("./series/allSeries");
 const me = require("./auth/me");
 const myProducts = require("./product/myProducts");
 const deleteProduct = require("./product/deleteProduct");
+const deleteCategory = require("./category/deleteCategory");
 
 module.exports = {
   login,
@@ -26,11 +27,12 @@ module.exports = {
 
   addProduct,
   allProducts,
+  myProducts,
+  deleteProduct,
 
   addCategory,
   allCategory,
-  myProducts,
-  deleteProduct,
+  deleteCategory,
 
   addSeries,
   allSeries,

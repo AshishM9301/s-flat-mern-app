@@ -17,6 +17,7 @@ import {
   faTableCellsLarge,
 } from "@fortawesome/free-solid-svg-icons";
 import SideBarMenuItem from "./SideBarMenuItem";
+import { faWindows } from "@fortawesome/free-brands-svg-icons";
 
 type Props = {};
 
@@ -50,6 +51,11 @@ const SideNavbar = (props: Props) => {
           onClick: () => navigate("/admin/add-product"),
         },
       ],
+    },
+    {
+      icon: <FontAwesomeIcon icon={faWindows} />,
+      title: "Category",
+      onClick: () => navigate("/admin/category"),
     },
     {
       icon: <FontAwesomeIcon icon={faCookieBite} />,

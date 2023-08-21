@@ -1,0 +1,65 @@
+.bg_over {
+  background-color: rgba(0, 0, 0, 0.65);
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  z-index: 2;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.confirmation_container {
+  z-index: 3;
+  background-color: #fff;
+  border-radius: 5px;
+  position: relative;
+  min-width: 300px;
+  max-width: 650px;
+}
+
+.confirmation_title {
+  padding: 10px 20px;
+  border-bottom: 1px solid #020202;
+}
+
+.confirmation_title h2 {
+  font-size: 20px;
+  font-family: "Poppins-Medium";
+}
+
+.confirmation_details {
+  padding: 10px 20px;
+}
+
+.confirmation_details p {
+  font-size: 16px;
+  font-family: "Poppins-Light";
+}
+
+.confirmation_buttons {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 20px;
+}
+
+.confirmation_buttons button {
+  margin: 0 4px;
+}
+
+.confirmation_buttons button:hover {
+  border: none;
+}
