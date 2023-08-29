@@ -72,3 +72,11 @@
   color: #0156ff;
   transition: 0.2s;
 }
+
+.selected {
+  color: #0156ff;
+}
+
+.selected:hover {
+  color: #020202;
+}

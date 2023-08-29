@@ -1,6 +1,6 @@
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Dropdown.module.css";
 
 interface DropDownMenu {
@@ -11,6 +11,7 @@ export type DropDownMenus = Array<DropDownMenu>;
 interface Props {
   title: string;
   menus: DropDownMenus;
+  width?: number;
 }
 const defaultProps: Props = {
   title: "Dropdown",
@@ -18,6 +19,7 @@ const defaultProps: Props = {
     { menuTitle: "Menu 1", onClick: () => {} },
     { menuTitle: "Menu 2", onClick: () => {} },
   ],
+  width: 150,
 };
 
 const Dropdown = (props: Props) => {
@@ -28,10 +30,17 @@ const Dropdown = (props: Props) => {
     setOpen(!open);
   };
 
-  console.log(dropDownMenuData);
+  useEffect(() => {
+    props.menus.unshift({
+      menuTitle: "Selct Option",
+      onClick() {
+        setDropDownMenuData("");
+      },
+    });
+  }, [props.menus]);
 
   return (
-    <div className={styles.dropdown}>
+    <div className={styles.dropdown} style={{ width: props.width }}>
       <button onClick={handleOpen} className={styles.dropdown_button}>
         {!dropDownMenuData ? (
           <>

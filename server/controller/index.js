@@ -15,6 +15,8 @@ const me = require("./auth/me");
 const myProducts = require("./product/myProducts");
 const deleteProduct = require("./product/deleteProduct");
 const deleteCategory = require("./category/deleteCategory");
+const addFavouriteCategory = require("./category/addFavouriteCategory");
+const removeFavouriteCategory = require("./category/removeFavouriteCategory");
 
 module.exports = {
   login,
@@ -33,6 +35,8 @@ module.exports = {
   addCategory,
   allCategory,
   deleteCategory,
+  addFavouriteCategory,
+  removeFavouriteCategory,
 
   addSeries,
   allSeries,

@@ -126,3 +126,10 @@
   background-color: #f5f7ff;
   width: 100%;
 }
+
+@media screen and (max-width: 1000px) {
+  .d_product {
+    flex-direction: column-reverse;
+    width: 500px;
+  }
+}

@@ -1,18 +1,18 @@
 const { ObjectId } = require("mongoose").Types;
 const Category = require("../../models/Category");
 
-const addFavouriteCategory = async (req, res, next) => {
+const removeFavouriteCategory = async (req, res, next) => {
   try {
     const { id } = req.params;
 
     await Category.findOneAndUpdate(
       { id: id },
-      { $push: { favourite: ObjectId(req.user._id) } }
+      { $pull: { favourite: ObjectId(req.user._id) } }
     );
 
     res.status(200).json({
       success: true,
-      message: "Added to Favourite",
+      message: "Removed from Favourite",
     });
   } catch (err) {
     console.log(err);
@@ -20,4 +20,4 @@ const addFavouriteCategory = async (req, res, next) => {
   }
 };
 
-module.exports = addFavouriteCategory;
+module.exports = removeFavouriteCategory;

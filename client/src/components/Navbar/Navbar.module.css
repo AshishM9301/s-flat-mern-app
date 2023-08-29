@@ -334,3 +334,9 @@
   font-size: 12px;
   font-family: "Poppins-Medium";
 }
+
+@media screen and (max-width: 1000px) {
+  .sidebar_page {
+    flex: none;
+  }
+}

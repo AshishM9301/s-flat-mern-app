@@ -10,6 +10,14 @@ export const productApi = createApi({
   reducerPath: "productApi",
   baseQuery: fetchBaseQuery({
     baseUrl: API_URL,
+    prepareHeaders: (headers, { getState, endpoint }) => {
+      const token = String(JSON.parse(localStorage.getItem("token")));
+
+      if (token) {
+        headers.set("Authorization", `Bearer ${token}`);
+      }
+      return headers;
+    },
   }),
   endpoints: (builder) => ({
     categories: builder.mutation<ProductsResponseBody, {}>({
@@ -33,10 +41,38 @@ export const productApi = createApi({
         },
       }),
     }),
+    addToFavouriteCategory: builder.mutation<
+      ProductsResponseBody,
+      { params: string }
+    >({
+      query: (req) => ({
+        url: `/category/favourite/add/${req.params}`,
+        method: "POST",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      }),
+    }),
+    removeToFavouriteCategory: builder.mutation<
+      ProductsResponseBody,
+      { params: string }
+    >({
+      query: (req) => ({
+        url: `/category/favourite/remove/${req.params}`,
+        method: "POST",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      }),
+    }),
   }),
 });
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useCategoriesMutation, useDeleteCategoriesMutation } =
-  productApi;
+export const {
+  useCategoriesMutation,
+  useDeleteCategoriesMutation,
+  useAddToFavouriteCategoryMutation,
+  useRemoveToFavouriteCategoryMutation,
+} = productApi;
