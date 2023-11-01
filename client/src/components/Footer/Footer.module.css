@@ -1,0 +1,105 @@
+.bgColor {
+  background-color: #000;
+  color: #fff;
+
+  padding: 50px 20px;
+
+  /* margin-top: 50px; */
+}
+
+.footerContainer {
+  width: 1400px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+.footerFirstSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.titleText {
+  font-size: 38px;
+  font-family: "Poppins-Medium";
+  word-spacing: 1px;
+}
+
+.titleDescText {
+  font-size: 14px;
+  font-family: "Poppins-Light";
+}
+
+.inputContainer {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.input {
+  max-width: 100%;
+  width: 340px;
+
+  border-radius: 4px;
+  padding: 10px 14px;
+  outline: none;
+  background-color: #000;
+  border: 2px solid #fff;
+  transition: 200ms;
+
+  color: #fff;
+  font-size: 14px;
+}
+
+.input::placeholder {
+  color: #fff;
+  font-family: "Poppins-Light";
+}
+
+.input:focus {
+  border: 2px solid #0156ff;
+}
+
+.button {
+  background-color: #0156ff;
+  color: #efefef;
+  border-radius: 9999px;
+  padding: 6px 25px;
+
+  font-size: 14px;
+  font-family: "Poppins-SemiBold";
+  text-transform: capitalize;
+}
+
+.footerLinkSection {
+  display: flex;
+  justify-content: space-between;
+}
+
+.linkName {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: "Poppins-Bold";
+
+  margin-top: 32px;
+  margin-bottom: 10px;
+}
+
+.informationLinks,
+.pcPartsLinks,
+.desktopPcLinks,
+.laptopsLinks,
+.address {
+  flex: 2;
+}
+
+.linksContainer {
+  font-size: 13px;
+  line-height: 160%;
+}

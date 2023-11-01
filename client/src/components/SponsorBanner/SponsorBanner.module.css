@@ -1,0 +1,26 @@
+.container {
+  width: 1400px;
+  margin: 0 auto;
+  padding: 10px 30px;
+
+  /* margin-top: 30px; */
+}
+
+.imagesContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 30px;
+
+  margin-top: 50px;
+}
+
+.imgContainer {
+  width: 121px;
+}
+
+.img {
+  max-width: 100%;
+  object-fit: cover;
+  filter: grayscale(100%);
+}

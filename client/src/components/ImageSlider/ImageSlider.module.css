@@ -1,0 +1,13 @@
+.card{
+    height: 200px;
+}
+
+.cardImg{
+    max-width: 100%;
+    object-fit: cover;
+    transition: 200ms;
+}
+
+.cardImg:hover{
+    scale: 1.15;
+}

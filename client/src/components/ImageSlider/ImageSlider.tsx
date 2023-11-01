@@ -1,24 +1,21 @@
-import React, { useState } from "react";
-import Slider from "infinite-react-carousel";
+import Slider from "react-slick";
+import { Img } from "../../types";
+import styles from "./ImageSlider.module.css";
 
-type Props = { images: Array<string> };
+type Props = {
+  images: Array<Img>;
+};
 
-const ImageSlider = (props: Props) => {
-  const [settings, setSettings] = useState({ dots: true, autoplay: true });
-
+const ImageSlider = ({ images }: Props) => {
   return (
     <div>
-      <Slider {...settings}>
-        {props.images.map((item, index) => (
-          <div>
+      <Slider>
+        {images.map((item, index) => (
+          <div className={styles.card}>
             <img
-              src={item?.imgUrl}
-              style={{
-                width: "100%",
-                maxHeight: 400,
-                borderRadius: 6,
-                objectFit: "cover",
-              }}
+              src={item.imgUrl}
+              alt={index.toString() + "img"}
+              className={styles.cardImg}
             />
           </div>
         ))}

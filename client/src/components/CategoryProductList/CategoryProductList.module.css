@@ -1,0 +1,33 @@
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+.flex {
+  display: flex;
+  /* align-items: center; */
+}
+
+.categoryLeftBanner {
+  min-height: 320px;
+  width: 240px;
+  padding: 60px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #fff;
+  font-family: "Poppins-SemiBold";
+  font-size: 24px;
+  text-align: center;
+
+  word-wrap: break-word;
+}
+
+.productList {
+  flex: 2;
+  /* width: 900px; */
+  /* padding: 0 30px; */
+}

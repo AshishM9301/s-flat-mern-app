@@ -1,0 +1,24 @@
+.container {
+  max-width: 300px;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.imgContainer {
+  width: 100%;
+}
+
+.img {
+  max-width: 100%;
+  object-fit: cover;
+}
+
+.blogTitleText {
+  font-size: 14px;
+  font-family: "Poppins-Light";
+  text-align: center;
+
+  margin-top: 6px;
+
+  padding: 0 20px;
+}
