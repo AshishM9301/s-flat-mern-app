@@ -1,0 +1,58 @@
+.container {
+  min-height: 200px;
+  background-color: #f5f7ff;
+  /* border-radius: 10px; */
+  padding: 50px 120px;
+}
+
+.quoteContainer {
+  font-size: 32px;
+  margin-right: 20px;
+}
+
+.reviewTextContainer {
+  display: flex;
+}
+
+.reviewText {
+  font-size: 14px;
+  font-family: "Poppins-Light";
+
+  line-height: 24px;
+  word-spacing: 1px;
+
+  margin-top: 10px;
+}
+
+.reviewWritterName {
+  font-size: 16px;
+  font-size: "Poppins-Medium";
+
+  margin-top: 20px;
+  margin-bottom: 40px;
+
+  text-align: right;
+}
+
+.reviewButtonContainer {
+  margin-bottom: -10px;
+}
+
+.reviewButton {
+  background-color: transparent;
+  border: 2px solid #0156ff;
+  border-radius: 9999px;
+
+  color: #0156ff;
+  font-size: 14px;
+  font-family: "Poppins-SemiBold";
+
+  padding: 4px 40px;
+
+  transition: 200ms;
+}
+
+.reviewButton:hover {
+  background-color: #fff;
+  transform: scale(1.03);
+}

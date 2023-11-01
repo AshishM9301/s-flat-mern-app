@@ -1,0 +1,39 @@
+.container {
+  max-width: 1398px;
+  margin: 20px auto;
+}
+
+.bgcolor {
+  background-color: #f5f7ff;
+  padding: 10px 30px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.adContainer {
+  padding: 0px 10px;
+  border-right: 3px solid #000108;
+}
+
+.adImg {
+  max-width: 100%;
+  object-fit: cover;
+  margin-top: 5px;
+}
+
+.adTextContainer {
+  font-size: 14px;
+  font-family: "Poppins-Medium";
+
+  margin: 0 10px;
+}
+
+.adTextContainer span {
+  font-size: 12px;
+  font-family: "Poppins-Light";
+  text-decoration: underline;
+  margin-left: 5px;
+  cursor: pointer;
+}

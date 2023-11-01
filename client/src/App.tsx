@@ -1,15 +1,13 @@
 import "./App.css";
-import { useEffect } from "react";
-import { Navigate, Outlet } from "react-router-dom";
+import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
-import Home from "./pages/Home/Home";
-import { AuthProvider, useAuth } from "./hooks/useAuth";
-import { useMeMutation } from "./store/services/authApi";
+import { AuthProvider } from "./hooks/useAuth";
 
 function App() {
   return (
     <AuthProvider>
       <Navbar />
+      <Footer />
     </AuthProvider>
   );
 }
