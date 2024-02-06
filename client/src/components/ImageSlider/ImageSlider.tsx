@@ -1,28 +1,46 @@
 import React, { useState } from "react";
-import Slider from "infinite-react-carousel";
-
-type Props = { images: Array<string> };
+import Slider from "react-slick";
+type Props = { images: Array<{ imgUrl: string }> };
 
 const ImageSlider = (props: Props) => {
-  const [settings, setSettings] = useState({ dots: true, autoplay: true });
+  const [settings, setSettings] = useState({
+    infinite: true,
+    speed: 500,
+  });
+
+  console.log("Img length", props?.images.length);
 
   return (
-    <div>
-      <Slider {...settings}>
-        {props.images.map((item, index) => (
-          <div>
-            <img
-              src={item?.imgUrl}
-              style={{
-                width: "100%",
-                maxHeight: 400,
-                borderRadius: 6,
-                objectFit: "cover",
-              }}
-            />
-          </div>
-        ))}
-      </Slider>
+    <div className="slider-container">
+      {props.images.length >= 2 ? (
+        <Slider {...settings}>
+          {props.images.map((item, index) => (
+            <div key={index.toString()}>
+              <img
+                src={item?.imgUrl}
+                style={{
+                  width: "100%",
+                  maxHeight: 400,
+                  borderRadius: 6,
+                  objectFit: "cover",
+                }}
+              />
+            </div>
+          ))}
+        </Slider>
+      ) : (
+        <div>
+          <img
+            src={props.images[0]?.imgUrl}
+            style={{
+              width: "100%",
+              maxHeight: 400,
+              borderRadius: 6,
+              objectFit: "cover",
+            }}
+          />
+        </div>
+      )}
     </div>
   );
 };

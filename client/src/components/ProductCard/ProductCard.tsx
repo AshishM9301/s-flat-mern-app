@@ -7,12 +7,13 @@ import Rating from "react-rating";
 
 type Props = {
   inStock: string;
-  images: Array<string>;
+  images: Array<{ imgUrl: string }>;
   rating: string;
   productName: string;
   productDescription: string;
   offerprice: string;
   price: string;
+  review: string;
 };
 
 const ProductCard = (props: Props) => {
@@ -26,20 +27,22 @@ const ProductCard = (props: Props) => {
       )}
       {props.images.length > 0 && <ImageSlider images={props.images} />}
 
-      {props.rating && (
-        <div>
-          <Rating
-            readonly
-            initialRating={4}
-            fractions={2}
-            emptySymbol={<FontAwesomeIcon icon={faStar} color="gray" />}
-            fullSymbol={<FontAwesomeIcon icon={faStar} color="orange" />}
-          />
-          <div>
-            <p>Review ({})</p>
+      <div>
+        {props.rating && (
+          <div className={styles.flex}>
+            <Rating
+              readonly
+              initialRating={4}
+              fractions={2}
+              emptySymbol={<FontAwesomeIcon icon={faStar} color="gray" />}
+              fullSymbol={<FontAwesomeIcon icon={faStar} color="orange" />}
+            />
+            <div className={styles.review}>
+              <p>Review ({props.review})</p>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
 
       {props.productName && (
         <div>
@@ -52,12 +55,12 @@ const ProductCard = (props: Props) => {
         </div>
       )}
       {props.offerprice && (
-        <div>
+        <div className={styles.offerPrice}>
           <p>{props.offerprice}</p>
         </div>
       )}
       {props.price && (
-        <div>
+        <div className={styles.price}>
           <p>{props.price}</p>
         </div>
       )}

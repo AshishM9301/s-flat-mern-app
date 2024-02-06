@@ -5,15 +5,12 @@ import {
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
+import Slider from "react-slick";
 
 type Props = {};
 
 const BannerSlider = (props: Props) => {
-  var [bannerImg, setBannerImg] = useState(
-    "https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-  );
-
-  let images = [
+  const images = [
     {
       imgUrl:
         "https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
@@ -24,61 +21,24 @@ const BannerSlider = (props: Props) => {
     },
   ];
 
-  const changeImg = () => {
-    let count = 1;
-    setInterval(() => {
-      console.log(count);
-      setBannerImg(images[count - 1].imgUrl);
-      if (count !== images.length) {
-        count++;
-      } else {
-        count = 1;
-      }
-    }, 3000);
-  };
-
-  useEffect(() => {
-    changeImg();
-  }, []);
-
-  const nextBanner = async () => {
-    let count = images.findIndex((val) => val.imgUrl === bannerImg);
-
-    console.log(
-      count,
-
-      "COunt"
-    );
-    try {
-      if (count === images.length) {
-        count = 0;
-      } else {
-        count++;
-      }
-
-      setBannerImg(images[count].imgUrl);
-      console.log(bannerImg);
-    } catch (err) {
-      console.log(err);
-    }
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
   };
 
   return (
     <div className={styles.container}>
-      <div className={styles.left_button}>
-        <FontAwesomeIcon icon={faChevronLeft} />
-      </div>
-      <div className={styles.img_container}>
-        <img src={bannerImg} alt="banner-img" />
-      </div>
-      <div className={styles.right_button}>
-        <FontAwesomeIcon
-          icon={faChevronRight}
-          onClick={() => {
-            console.log("clicked");
-            nextBanner();
-          }}
-        />
+      <div className="slider-container">
+        <Slider {...settings}>
+          {images.map((item, index) => (
+            <div className={styles.img_container} key={index.toString()}>
+              <img src={item.imgUrl} alt="banner-img" />
+            </div>
+          ))}
+        </Slider>
       </div>
     </div>
   );
