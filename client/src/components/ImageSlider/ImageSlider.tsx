@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import Slider from "react-slick";
 type Props = { images: Array<{ imgUrl: string }> };
@@ -10,6 +11,8 @@ const ImageSlider = (props: Props) => {
 
   console.log("Img length", props?.images.length);
 
+
+const ImageSlider = ({ images }: Props) => {
   return (
     <div className="slider-container">
       {props.images.length >= 2 ? (

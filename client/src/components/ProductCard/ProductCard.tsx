@@ -1,9 +1,10 @@
-import React from "react";
-import styles from "./ProductCard.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle, faStar } from "@fortawesome/free-solid-svg-icons";
-import ImageSlider from "../ImageSlider/ImageSlider";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Rating from "react-rating";
+import { Img } from "../../types";
+import FormatedPrice from "../FormattedPrice/FormattedPrice";
+import ImageSlider from "../ImageSlider/ImageSlider";
+import styles from "./ProductCard.module.css";
 
 type Props = {
   inStock: string;
@@ -14,6 +15,7 @@ type Props = {
   offerprice: string;
   price: string;
   review: string;
+
 };
 
 const ProductCard = (props: Props) => {
@@ -27,9 +29,11 @@ const ProductCard = (props: Props) => {
       )}
       {props.images.length > 0 && <ImageSlider images={props.images} />}
 
+
       <div>
         {props.rating && (
           <div className={styles.flex}>
+
             <Rating
               readonly
               initialRating={4}
@@ -62,8 +66,9 @@ const ProductCard = (props: Props) => {
       {props.price && (
         <div className={styles.price}>
           <p>{props.price}</p>
+
         </div>
-      )}
+      </div>
     </div>
   );
 };

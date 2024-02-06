@@ -1,3 +1,4 @@
+
 .container div {
   width: 1400px;
   margin: 0 auto;
@@ -44,3 +45,138 @@
   object-fit: cover;
   aspect-ratio: auto;
 }
+=======
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sliderContainer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+
+
+
+
+/* Text Container */
+
+.bannerTextContainer{
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+z-index: 50;
+
+
+display: flex;
+flex-direction: column;
+align-items: center;
+text-transform: uppercase;
+
+
+max-width: 800px;
+
+padding: 40px 100px ;
+}
+
+.dealText{
+  display: flex;
+    font-size: 10px;
+    color: #efefef;
+    border: 1.5px solid #efefef;
+    padding: 4px 10px;
+}
+
+.bannerTitleContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: flex-start;
+}
+
+.bannerTitle{
+  font-size: 48px;
+font-family: 'Poppins-Medium';
+
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: -4px;
+  word-spacing: 4px;
+}
+
+.bannerDescription{
+  font-size: 16px;
+  color: #efefef;
+  font-weight: 200;
+  letter-spacing: 2px;
+  word-spacing: 4px;
+  text-align: center;
+}
+
+.bannerButtonContainer{
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  align-self: flex-start;
+  margin-top: 32px;
+
+  gap: 10px;
+}
+
+.bannerButton button{
+background: #efefef;
+border-radius: 0px;
+padding: 1px 40px;
+
+font-size: 24px;
+font-family: 'Poppins-SemiBold';
+color: #0e0f12;
+text-transform: uppercase;
+}
+
+.bannerButton:hover button{
+  background: #fff;
+  color: #000;
+}
+
+.bannerTipsText{
+
+  max-width: 280px;
+
+  font-size: 8px;
+  color: #fff;
+  letter-spacing: 2px;
+  word-spacing: 4px;
+font-family: 'Poppins-Medium';
+
+}
+
+
+/* Banner Botton */
+.bannerBottom{
+    position: absolute;
+    z-index: 10;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+}
+
+
+
+@media screen and (max-width: 500px) {
+  .bannerTextContainer{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1140px) {
+  .bannerTextContainer{
+    padding: 30px 50px ;
+  }
+}
+
