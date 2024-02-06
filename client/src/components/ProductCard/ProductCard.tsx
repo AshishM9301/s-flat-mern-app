@@ -8,13 +8,14 @@ import styles from "./ProductCard.module.css";
 
 type Props = {
   inStock: string;
-  images: Array<Img>;
+  images: Array<{ imgUrl: string }>;
   rating: string;
   productName: string;
-  productDescription?: string;
-  offerprice: number;
-  price: number;
-  review?: number;
+  productDescription: string;
+  offerprice: string;
+  price: string;
+  review: string;
+
 };
 
 const ProductCard = (props: Props) => {
@@ -28,9 +29,11 @@ const ProductCard = (props: Props) => {
       )}
       {props.images.length > 0 && <ImageSlider images={props.images} />}
 
-      <div className={styles.productTextContainer}>
+
+      <div>
         {props.rating && (
-          <div className={styles.customerDetailContainer}>
+          <div className={styles.flex}>
+
             <Rating
               readonly
               initialRating={4}
@@ -38,43 +41,32 @@ const ProductCard = (props: Props) => {
               emptySymbol={<FontAwesomeIcon icon={faStar} color="gray" />}
               fullSymbol={<FontAwesomeIcon icon={faStar} color="orange" />}
             />
-            {props?.review && (
-              <div className={styles.review}>
-                <p>Review ({props?.review})</p>
-              </div>
-            )}
+            <div className={styles.review}>
+              <p>Review ({props.review})</p>
+            </div>
           </div>
         )}
+      </div>
 
-        {props.productName && (
-          <div className={styles.productName}>
-            <p>
-              {props.productName.length > 50
-                ? props.productName.substring(0, 50) + " ..."
-                : props.productName}
-            </p>
-          </div>
-        )}
-        {props.productDescription && (
-          <div>
-            <p>{props.productDescription}</p>
-          </div>
-        )}
-        <div className={styles.priceContainer}>
-          {props.offerprice && (
-            <div className={styles.offerPrice}>
-              <p>
-                <FormatedPrice amount={props.offerprice} />
-              </p>
-            </div>
-          )}
-          {props.price && (
-            <div className={styles.price}>
-              <p>
-                <FormatedPrice amount={props.price} />
-              </p>
-            </div>
-          )}
+      {props.productName && (
+        <div>
+          <h3>{props.productName}</h3>
+        </div>
+      )}
+      {props.productDescription && (
+        <div>
+          <p>{props.productDescription}</p>
+        </div>
+      )}
+      {props.offerprice && (
+        <div className={styles.offerPrice}>
+          <p>{props.offerprice}</p>
+        </div>
+      )}
+      {props.price && (
+        <div className={styles.price}>
+          <p>{props.price}</p>
+
         </div>
       </div>
     </div>

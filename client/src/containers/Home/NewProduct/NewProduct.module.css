@@ -1,0 +1,13 @@
+.mt4 {
+    margin-top: 16px;
+  }
+  
+  .heading_title {
+    font-weight: 600;
+    font-size: 22px;
+    color: #000;
+  }
+  
+  .flex{
+      display: flex;
+  }

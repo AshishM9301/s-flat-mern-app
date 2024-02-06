@@ -1,3 +1,10 @@
+
+import React from "react";
+import BannerSlider from "../../components/BannerSlider/BannerSlider";
+import ProductCard from "../../components/ProductCard/ProductCard";
+
+import NewProduct from "../../containers/Home/NewProduct/NewProduct";
+
 import AdBanner from "../../components/AdBanner/AdBanner";
 import BannerSlider from "../../components/BannerSlider/BannerSlider";
 import BlogList from "../../components/BlogList/BlogList";
@@ -8,12 +15,21 @@ import SponsorBanner from "../../components/SponsorBanner/SponsorBanner";
 
 import styles from "./Home.module.css";
 
+
 type Props = {};
 
 const Home = (props: Props) => {
   return (
     <div>
       <div>
+
+        <BannerSlider />
+      </div>
+
+      <div>
+        <NewProduct />
+      </div>
+
         <BannerSlider
           images={[
             {

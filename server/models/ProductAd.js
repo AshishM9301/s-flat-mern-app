@@ -19,6 +19,10 @@ const productAdSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Series",
     },
+    category_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category",
+    },
     bgColor: {
       type: String,
     },

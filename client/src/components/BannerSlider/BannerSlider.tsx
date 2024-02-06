@@ -1,70 +1,46 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
+
+import React, { useEffect, useState } from "react";
+import styles from "./BannerSlider.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faChevronLeft,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
 import Slider from "react-slick";
 
-import "slick-carousel/slick/slick-theme.css";
-import "slick-carousel/slick/slick.css";
-import NextArrow from "../NextArrow/NextArrow";
-import PrevArrow from "../PrevArrow/PrevArrow";
-import styles from "./BannerSlider.module.css";
-import SliderText from "./SliderText";
-
-type img = {
-  imgUrl: string;
-  dealName?: string;
-  bannerTitle: string;
-  bannerDesc?: string;
-  bannerButtonText?: string;
-  bannerTips?: string;
-};
-
-type Props = {
-  images: Array<img>;
-};
+type Props = {};
 
 const BannerSlider = (props: Props) => {
-  // const [settings, setSettings] = useState({ dots: true, autoplay: true });
+  const images = [
+    {
+      imgUrl:
+        "https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    },
+    {
+      imgUrl:
+        "https://images.unsplash.com/photo-1692970095410-6bd548fc7f6c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2128&q=80",
+    },
+  ];
 
   const settings = {
-    dots: false,
+    dots: true,
     infinite: true,
-    autoplay: true,
+    speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    arrows: true,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
   };
 
   return (
-    <div className="relative">
-      <Slider {...settings}>
-        {props.images.map((item, index) => (
-          <div className={styles.sliderContainer} key={index.toString()}>
-            <img
-              src={item?.imgUrl}
-              style={{
-                width: "100%",
-                height: "100%",
-                maxHeight: 400,
-                objectFit: "cover",
-                position: "relative",
-                zIndex: 0,
-              }}
-              alt="banner"
-            />
-
-            <SliderText
-              bannerTitle={item.bannerTitle}
-              bannerButtonText="Buy now"
-              bannerDesc=" Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius, maiores! Quas doloremque blanditiis accusantium quaerat iste laborum id."
-              bannerTips=" Lorem ipsum, dolor sit amet consectetur adipisicing elit."
-              dealName="Lofy Deal"
-            />
-            <div className={styles.bannerBottom} />
-          </div>
-        ))}
-      </Slider>
+    <div className={styles.container}>
+      <div className="slider-container">
+        <Slider {...settings}>
+          {images.map((item, index) => (
+            <div className={styles.img_container} key={index.toString()}>
+              <img src={item.imgUrl} alt="banner-img" />
+            </div>
+          ))}
+        </Slider>
+      </div>
     </div>
   );
 };

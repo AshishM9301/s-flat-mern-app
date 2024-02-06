@@ -1,4 +1,10 @@
 import ReactDOM from "react-dom/client";
+
+import App from "./App.tsx";
+import "./index.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 import { Provider } from "react-redux";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./Routes.tsx";
