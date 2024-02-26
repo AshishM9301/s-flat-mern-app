@@ -1,7 +1,7 @@
+import { useEffect, useState } from "react";
 import Slider from "react-slick";
 import ProductCard from "../../../components/ProductCard/ProductCard";
 import styles from "./NewProduct.module.css";
-import { useState } from "react";
 const NewProduct = () => {
   const products = [
     {
@@ -106,9 +106,24 @@ const NewProduct = () => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 5,
+    slidesToShow: width > 1400 ? 5 : width < 400 ? 1 : 3,
     slidesToScroll: 1,
   };
+
+  useEffect(() => {
+    function handleResize() {
+      // Set window width/height to state
+      setWidth(window.innerWidth);
+    }
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+    // Call handler right away so state gets updated with initial window size
+    handleResize();
+    // Remove event listener on cleanup
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // console.log(width);
 
   return (
     <div className={`container ` + styles.mt4}>

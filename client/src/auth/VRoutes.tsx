@@ -14,6 +14,7 @@ export const ProtectedRoute = ({ component: Component }) => {
 
 export const NormalRoute = ({ component: Component }) => {
   const { token } = useAuth();
+
   if (token) {
     // user is not authenticated
     return <Navigate to="/" />;

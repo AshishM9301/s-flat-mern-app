@@ -1,9 +1,8 @@
-import React from "react";
-import styles from "./ProductCard.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle, faStar } from "@fortawesome/free-solid-svg-icons";
-import ImageSlider from "../ImageSlider/ImageSlider";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Rating from "react-rating";
+import ImageSlider from "../ImageSlider/ImageSlider";
+import styles from "./ProductCard.module.css";
 
 type Props = {
   inStock: string;

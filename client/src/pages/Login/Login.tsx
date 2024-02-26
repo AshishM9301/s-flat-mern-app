@@ -26,6 +26,7 @@ const Login = (props: Props) => {
       await login({ body: user })
         .unwrap()
         .then((res) => {
+          // console.log(res);
           if (res.success) {
             loginAuth(res);
           }

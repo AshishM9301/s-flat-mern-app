@@ -38,12 +38,13 @@ const register = async (req, res, next) => {
       _id: newUser._id,
       firstName: newUser.firstName,
       lastName: newUser.lastName,
-      email: newUser.email,role:newUser.role,
+      email: newUser.email,
+      role: newUser.role,
     };
 
     const { accessToken, refreshToken } = generateToken(response);
 
-    sendEmail(
+    await sendEmail(
       [email],
       "Registration Verification",
       verifyMail({ firstName, lastName, accessToken })

@@ -8,8 +8,6 @@ const ImageSlider = (props: Props) => {
     speed: 500,
   });
 
-  console.log("Img length", props?.images.length);
-
   return (
     <div className="slider-container">
       {props.images.length >= 2 ? (

@@ -12,12 +12,17 @@ import Dashboard from "./pages/Admin/Dashboard/Dashboard";
 import ProductPage from "./pages/Admin/Product/ProductPage/ProductPage";
 import SellerProductsPage from "./pages/Admin/Product/SellerProductsPage/SellerProductsPage";
 import CategoryPage from "./pages/Admin/Category/CategoryPage/CategoryPage";
+import { useMeMutation } from "./store/services/authApi";
 
 const getUserData = () =>
   new Promise((resolve) =>
     setTimeout(() => {
-      const user = window.localStorage.getItem("token");
-      resolve(user);
+      try {
+        const user = window.localStorage.getItem("token");
+        resolve(user);
+      } catch (err) {
+        console.log(err);
+      }
     }, 3000)
   );
 

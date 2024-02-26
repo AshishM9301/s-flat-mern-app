@@ -44,3 +44,14 @@
   object-fit: cover;
   aspect-ratio: auto;
 }
+
+@media only screen and (max-width: 1400px) {
+
+  .container div{
+    width: 100%;
+  }
+
+  .img_container img{
+    max-width: 100%;
+  }
+}
