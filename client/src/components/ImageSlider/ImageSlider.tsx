@@ -13,28 +13,43 @@ const ImageSlider = ({ images }: Props) => {
       {images.length >= 2 ? (
         <Slider {...settings}>
           {images.map((item, index) => (
-            <div key={index.toString()}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              key={index.toString()}
+            >
               <img
                 src={item?.imgUrl}
                 style={{
-                  width: "100%",
-                  maxHeight: 400,
-                  borderRadius: 6,
+                  width: 150,
+                  maxHeight: 150,
+                  maxWidth: "100%",
                   objectFit: "cover",
+                  margin: "0 auto",
                 }}
               />
             </div>
           ))}
         </Slider>
       ) : (
-        <div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <img
             src={images[0]?.imgUrl}
             style={{
-              width: "100%",
-              maxHeight: 400,
-              borderRadius: 6,
+              width: 150,
+              maxHeight: 150,
+              maxWidth: "100%",
               objectFit: "cover",
+              margin: "0 auto",
             }}
           />
         </div>

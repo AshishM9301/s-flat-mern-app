@@ -1,12 +1,9 @@
-
-import React from "react";
 import BannerSlider from "../../components/BannerSlider/BannerSlider";
-import ProductCard from "../../components/ProductCard/ProductCard";
 
 import NewProduct from "../../containers/Home/NewProduct/NewProduct";
 
 import AdBanner from "../../components/AdBanner/AdBanner";
-import BannerSlider from "../../components/BannerSlider/BannerSlider";
+// import BannerSlider from "../../components/BannerSlider/BannerSlider";
 import BlogList from "../../components/BlogList/BlogList";
 import CategoryProductList from "../../components/CategoryProductList/CategoryProductList";
 import NewProductSlider from "../../components/NewProductSlider/NewProductSlider";
@@ -15,36 +12,34 @@ import SponsorBanner from "../../components/SponsorBanner/SponsorBanner";
 
 import styles from "./Home.module.css";
 
-
 type Props = {};
 
 const Home = (props: Props) => {
   return (
     <div>
-      <div>
-
+      {/* <div>
         <BannerSlider />
       </div>
 
       <div>
         <NewProduct />
-      </div>
+      </div> */}
 
-        <BannerSlider
-          images={[
-            {
-              imgUrl:
-                "https://images.unsplash.com/photo-1682686581221-c126206d12f0",
-              bannerTitle: "Score a Gaming Monitor",
-            },
-            {
-              imgUrl:
-                "https://images.unsplash.com/photo-1697462248416-9671bbbf60ce",
-              bannerTitle: "Score a Gaming Monitor",
-            },
-          ]}
-        />
-      </div>
+      <BannerSlider
+        images={[
+          {
+            imgUrl:
+              "https://images.unsplash.com/photo-1682686581221-c126206d12f0",
+            bannerTitle: "Score a Gaming Monitor",
+          },
+          {
+            imgUrl:
+              "https://images.unsplash.com/photo-1697462248416-9671bbbf60ce",
+            bannerTitle: "Score a Gaming Monitor",
+          },
+        ]}
+      />
+
       <div>
         <NewProductSlider />
       </div>

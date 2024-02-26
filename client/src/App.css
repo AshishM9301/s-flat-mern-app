@@ -1,50 +1,49 @@
-
 .container {
-    width: 1400px;
-    margin: 0 auto;
-    height: 300px;
-  
-    position: relative;
+  width: 1400px;
+  margin: 0 auto;
+  height: 300px;
+
+  position: relative;
 }
 
 .relative {
-    position: relative;
+  position: relative;
 }
 
 .iconContiner {
-    padding: 0.75rem;
-    cursor: pointer;
-    background-color: #131418;
-    color: #efefef;
-    transition: 200ms;
-  
-    font-size: 24px;
-  
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 20;
-    position: absolute;
-    top: 50%;
-  }
-  
-  .iconRight {
-    right: 0px;
-  
-    border-top-left-radius: 9999px;
-    border-bottom-left-radius: 9999px;
-  }
-  
-  .iconLeft {
-    left: 0px;
-    border-top-right-radius: 9999px;
-    border-bottom-right-radius: 9999px;
-  }
-  
-  .iconContiner:hover {
-    color: #fff;
-    background-color: #0e0f12;
-  }
+  padding: 0.75rem;
+  cursor: pointer;
+  background-color: #666666;
+  color: #efefef;
+  transition: 200ms;
+
+  font-size: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  position: absolute;
+  top: 50%;
+}
+
+.iconRight {
+  right: 0px;
+
+  border-top-left-radius: 9999px;
+  border-bottom-left-radius: 9999px;
+}
+
+.iconLeft {
+  left: 0px;
+  border-top-right-radius: 9999px;
+  border-bottom-right-radius: 9999px;
+}
+
+.iconContiner:hover {
+  color: #fff;
+  background-color: #0e0f12;
+}
 
 @media only screen and (max-width: 1400px) {
   .container {

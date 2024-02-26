@@ -1,10 +1,9 @@
 import { faCheckCircle, faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Rating from "react-rating";
-import { Img } from "../../types";
-import FormatedPrice from "../FormattedPrice/FormattedPrice";
 import ImageSlider from "../ImageSlider/ImageSlider";
 import styles from "./ProductCard.module.css";
+import FormatedPrice from "../FormattedPrice/FormattedPrice";
 
 type Props = {
   inStock: string;
@@ -22,8 +21,8 @@ const ProductCard = (props: Props) => {
     <div className={styles.d_product_card}>
       {Number(props.inStock) > 0 && (
         <div className={styles.instockContainer}>
-          <FontAwesomeIcon icon={faCheckCircle} color="green" />
-          <p className={styles.instock}>Instock</p>
+          <FontAwesomeIcon size="xs" icon={faCheckCircle} color="green" />
+          <p className={styles.instock}>in stock</p>
         </div>
       )}
       {props.images.length > 0 && <ImageSlider images={props.images} />}
@@ -35,8 +34,12 @@ const ProductCard = (props: Props) => {
               readonly
               initialRating={4}
               fractions={2}
-              emptySymbol={<FontAwesomeIcon icon={faStar} color="gray" />}
-              fullSymbol={<FontAwesomeIcon icon={faStar} color="orange" />}
+              emptySymbol={
+                <FontAwesomeIcon size="xs" icon={faStar} color="#C4C4C4" />
+              }
+              fullSymbol={
+                <FontAwesomeIcon size="xs" icon={faStar} color="#E9A426" />
+              }
             />
             <div className={styles.review}>
               <p>Review ({props.review})</p>
@@ -46,7 +49,7 @@ const ProductCard = (props: Props) => {
       </div>
 
       {props.productName && (
-        <div>
+        <div className={styles.productName}>
           <h3>{props.productName}</h3>
         </div>
       )}
@@ -57,12 +60,16 @@ const ProductCard = (props: Props) => {
       )}
       {props.offerprice && (
         <div className={styles.offerPrice}>
-          <p>{props.offerprice}</p>
+          <p>
+            <FormatedPrice amount={Number(props.offerprice)} />
+          </p>
         </div>
       )}
       {props.price && (
         <div className={styles.price}>
-          <p>{props.price}</p>
+          <p>
+            <FormatedPrice amount={Number(props.price)} />
+          </p>
         </div>
       )}
     </div>
