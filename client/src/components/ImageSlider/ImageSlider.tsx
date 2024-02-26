@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Slider from "react-slick";
 type Props = { images: Array<{ imgUrl: string }> };
 
-const ImageSlider = (props: Props) => {
+const ImageSlider = ({ images }: Props) => {
   const [settings, setSettings] = useState({
     infinite: true,
     speed: 500,
@@ -10,9 +10,9 @@ const ImageSlider = (props: Props) => {
 
   return (
     <div className="slider-container">
-      {props.images.length >= 2 ? (
+      {images.length >= 2 ? (
         <Slider {...settings}>
-          {props.images.map((item, index) => (
+          {images.map((item, index) => (
             <div key={index.toString()}>
               <img
                 src={item?.imgUrl}
@@ -29,7 +29,7 @@ const ImageSlider = (props: Props) => {
       ) : (
         <div>
           <img
-            src={props.images[0]?.imgUrl}
+            src={images[0]?.imgUrl}
             style={{
               width: "100%",
               maxHeight: 400,

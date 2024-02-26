@@ -1,0 +1,18 @@
+.products{
+    display: flex !important;
+    justify-content: flex-start;
+    align-items:center ;
+
+    padding: 0 50px;
+    gap:10px
+}
+
+.cardContainer{
+    margin: 10px 5px;
+    flex: 1;
+    display: flex;
+    /* flex-direction: column; */
+    max-width: 205px;
+
+    justify-content: flex-start;
+}

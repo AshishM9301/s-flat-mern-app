@@ -6,6 +6,16 @@
   width: 220px;
 
   margin-right: 20px;
+  max-width: 300px;
+
+  /* padding: 10px 20px; */
+  /* border-radius: 6px; */
+  /* min-width: 150px; */
+  flex: 1;
+display: flex;
+flex-direction: column;
+  gap: 10px;
+  cursor: pointer;
 
 }
 
@@ -19,6 +29,7 @@
   color: green;
   margin-left: 10px;
 }
+
 
 .flex{
   display: flex;
@@ -41,4 +52,47 @@ column-gap: 10px;
   color: #000;
   font-size: 18px;
   font-weight: 600;
+}
+
+.instockContainer,.productTextContainer{
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.customerDetailContainer{
+  display: flex;
+  align-items: center;
+  /* justify-content: ; */
+  gap: 10px;
+
+  margin-top: -16px;
+  margin-bottom: 10px;
+}
+
+.review{
+  font-size: 11px;
+  color: #484848;
+  font-family: 'Poppins-Light';
+}
+
+.productName{
+  font-size: 14px;
+  font-family: 'Poppins-Light';
+  word-wrap: break-word;
+}
+
+
+.offerPrice{
+  color: #484848;
+  font-size: 12px;
+  text-decoration: line-through;
+}
+
+.price{
+  color: #000;
+  font-family: 'Poppins-SemiBold';
+}
+
+.priceContainer{
+  margin-top: 10px;
 }

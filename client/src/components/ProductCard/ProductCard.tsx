@@ -1,6 +1,8 @@
 import { faCheckCircle, faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Rating from "react-rating";
+import { Img } from "../../types";
+import FormatedPrice from "../FormattedPrice/FormattedPrice";
 import ImageSlider from "../ImageSlider/ImageSlider";
 import styles from "./ProductCard.module.css";
 
