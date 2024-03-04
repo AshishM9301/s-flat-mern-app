@@ -1,9 +1,12 @@
 import { faCheckCircle, faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Rating from "react-rating";
+import { Link } from "react-router-dom";
 import ImageSlider from "../ImageSlider/ImageSlider";
 import styles from "./ProductCard.module.css";
 import FormatedPrice from "../FormattedPrice/FormattedPrice";
+
+import { convertToSlug } from "../../services/convertToUrl";
 
 type Props = {
   inStock: string;
@@ -18,7 +21,11 @@ type Props = {
 
 const ProductCard = (props: Props) => {
   return (
-    <div className={styles.d_product_card}>
+    <Link
+      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+      to={`/product/${convertToSlug(props.productName)}`}
+      className={styles.d_product_card}
+    >
       {Number(props.inStock) > 0 && (
         <div className={styles.instockContainer}>
           <FontAwesomeIcon size="xs" icon={faCheckCircle} color="green" />
@@ -72,7 +79,7 @@ const ProductCard = (props: Props) => {
           </p>
         </div>
       )}
-    </div>
+    </Link>
   );
 };
 

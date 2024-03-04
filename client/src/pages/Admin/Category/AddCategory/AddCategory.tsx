@@ -1,13 +1,12 @@
-import React, { useState } from "react";
-import styles from "./AddCategory.module.css";
-import Input from "../../../../components/Input/Input";
-import Button from "../../../../components/Button/Button";
-import { useAddCategoryMutation } from "../../../../store/services/adminApi";
-import { AddCategoryResposneBody } from "../../../../store/types";
-import Modal from "../../../../components/Modal/Modal";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle, faX } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
+import Button from "../../../../components/Button/Button";
 import FileInput from "../../../../components/FileInput/FileInput";
+import Input from "../../../../components/Input/Input";
+import Modal from "../../../../components/Modal/Modal";
+import { useAddCategoryMutation } from "../../../../store/services/adminApi";
+import styles from "./AddCategory.module.css";
 
 type Props = {};
 
@@ -36,13 +35,13 @@ const AddCategory = (props: Props) => {
   };
 
   const deleteImage = (item) => {
+    console.log("clicked", images);
     let a = [...images];
+    let b = [...showImages];
 
-    setImages(
-      a.filter((img) => {
-        return img !== item;
-      })
-    );
+    setImages([]);
+
+    setShowImages([]);
   };
 
   const handleFileChange = async (file) => {
@@ -62,7 +61,7 @@ const AddCategory = (props: Props) => {
 
       console.log(a, "asdasd");
 
-      setImages([...images, ...a]);
+      setImages([...a]);
       // setShowImages([...showImages, ...b]);
     }
   };
@@ -74,14 +73,15 @@ const AddCategory = (props: Props) => {
         <div className={styles.d_card_container}>
           <div className={styles.d_card}>
             <FileInput
-              title="Add Image"
+              multiple={false}
+              title={showImages.length > 0 ? "Change Image" : "Add Image"}
               onChange={(file) => {
                 handleFileChange(file);
               }}
               img={(fs) => {
                 // setImages([...images, ...a]);
                 console.log(fs, ">>>>>>>FS");
-                setShowImages([...showImages, ...fs]);
+                setShowImages([...fs]);
               }}
             />
             <div style={{ display: "flex", flexWrap: "wrap" }}>
@@ -100,19 +100,7 @@ const AddCategory = (props: Props) => {
                     }}
                   />
                   <button
-                    style={{
-                      backgroundColor: "#fff",
-                      border: "1px solid #000",
-                      borderRadius: 9999,
-                      width: 40,
-                      height: 40,
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      position: "absolute",
-                      top: -13,
-                      right: -13,
-                    }}
+                    className={styles.img_delete_button}
                     onClick={() => {
                       deleteImage(item);
                     }}

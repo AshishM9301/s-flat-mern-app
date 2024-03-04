@@ -7,6 +7,7 @@ const facebookLogin = require("./auth/facebookLogin");
 
 const addProduct = require("./product/addProduct");
 const allProducts = require("./product/allProducts");
+const getProduct = require("./product/getProduct");
 const addCategory = require("./category/addCategory");
 const addSeries = require("./series/addSeries");
 const allCategory = require("./category/allCategory");
@@ -31,6 +32,7 @@ module.exports = {
   allProducts,
   myProducts,
   deleteProduct,
+  getProduct,
 
   addCategory,
   allCategory,

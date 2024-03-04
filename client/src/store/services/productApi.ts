@@ -3,7 +3,12 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { API_URL } from "../../config";
 import type { AddCategoryRequestBody, AddCategoryResposneBody } from "../types";
 import { RootState } from "../store";
-import { ProductsResponseBody } from "../types/Product";
+import {
+  AddToFavouriteCategoryResponseBody,
+  CategoryProductsResponseBody,
+  DeleteCategoryResponseBody,
+  ProductsResponseBody,
+} from "../types/Product";
 
 // Define a service using a base URL and expected endpoints
 export const productApi = createApi({
@@ -20,7 +25,7 @@ export const productApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    categories: builder.mutation<ProductsResponseBody, {}>({
+    categories: builder.mutation<CategoryProductsResponseBody, {}>({
       query: () => ({
         url: "/category/all",
         method: "GET",
@@ -30,7 +35,7 @@ export const productApi = createApi({
       }),
     }),
     deleteCategories: builder.mutation<
-      ProductsResponseBody,
+      DeleteCategoryResponseBody,
       { params: string }
     >({
       query: (req) => ({
@@ -42,7 +47,7 @@ export const productApi = createApi({
       }),
     }),
     addToFavouriteCategory: builder.mutation<
-      ProductsResponseBody,
+      AddToFavouriteCategoryResponseBody,
       { params: string }
     >({
       query: (req) => ({
@@ -54,12 +59,21 @@ export const productApi = createApi({
       }),
     }),
     removeToFavouriteCategory: builder.mutation<
-      ProductsResponseBody,
+      AddToFavouriteCategoryResponseBody,
       { params: string }
     >({
       query: (req) => ({
         url: `/category/favourite/remove/${req.params}`,
         method: "POST",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      }),
+    }),
+    getProduct: builder.mutation<ProductsResponseBody, { params: string }>({
+      query: (req) => ({
+        url: `/product/${req.params}`,
+        method: "GET",
         headers: {
           "Content-type": "application/json; charset=UTF-8",
         },
@@ -75,4 +89,5 @@ export const {
   useDeleteCategoriesMutation,
   useAddToFavouriteCategoryMutation,
   useRemoveToFavouriteCategoryMutation,
+  useGetProductMutation,
 } = productApi;

@@ -3,12 +3,14 @@ import styles from "./FileInput.module.css";
 
 type Props = {
   title: string;
+  multiple: boolean;
   onChange?: (e) => void;
   img?: (e) => void;
 };
 
 const defaultProps: Props = {
   title: "Add",
+  multiple: true,
 };
 
 const FileInput = (props: Props) => {
@@ -27,15 +29,15 @@ const FileInput = (props: Props) => {
         type="file"
         className={styles.input_files}
         ref={fileRef}
-        multiple
+        multiple={props.multiple}
         onChange={(e) => {
-          // console.log(e.target.files, ">>>>Files");
+          console.log(e.target.files, ">>>>Files");
 
           function get_extenstion(file) {
             return file.name.split(".")[1];
           }
 
-          setFile(e.target.files);
+          // setFile(e.target.files);
           let object_url = null,
             div = null,
             extension = null;
@@ -52,6 +54,7 @@ const FileInput = (props: Props) => {
             }
           }
           props.img(img);
+          fileRef.current.value = null;
         }}
       />
     </div>

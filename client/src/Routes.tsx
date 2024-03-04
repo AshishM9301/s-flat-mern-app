@@ -13,6 +13,7 @@ import ProductPage from "./pages/Admin/Product/ProductPage/ProductPage";
 import SellerProductsPage from "./pages/Admin/Product/SellerProductsPage/SellerProductsPage";
 import CategoryPage from "./pages/Admin/Category/CategoryPage/CategoryPage";
 import { useMeMutation } from "./store/services/authApi";
+import Product from "./pages/Product/ProductPage";
 
 const getUserData = () =>
   new Promise((resolve) =>
@@ -49,6 +50,10 @@ export const router = createBrowserRouter([
       {
         path: "verify",
         element: <NormalRoute component={VerifyPage} />,
+      },
+      {
+        path: "product/:slug",
+        element: <NormalRoute component={Product} />,
       },
       {
         path: "signup",

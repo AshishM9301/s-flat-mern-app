@@ -45,10 +45,10 @@ const allCategory = async (req, res, next) => {
       success: true,
       message: "All category",
       data: data[0].data,
-      limit: data[0].data.length,
-      count: data[0].count[0].total,
+      limit: data[0]?.data?.length,
+      count: data[0]?.count[0]?.total,
       pagination: Number.parseInt(
-        data[0].count[0].total / (data[0].data.length - skip)
+        data[0]?.count[0]?.total / (data[0]?.data?.length - skip)
       ),
     });
   } catch (err) {
