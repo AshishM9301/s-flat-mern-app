@@ -13,7 +13,7 @@ type Props = {
 };
 
 const defaultProps: Props = {
-  open: false,
+  open: true,
   icon: <FontAwesomeIcon icon={faHome} />,
   title: "",
 };
@@ -33,9 +33,10 @@ const SideBarMenuItem = (props: Props) => {
         paddingLeft: 32,
         paddingRight: 32,
       }}
-      onClick={() => {
+      onClick={(e) => {
+        e.preventDefault();
         props.submenu && setSubmenuOpen(!submenuOpen);
-        props?.onClick();
+        props?.onClick;
       }}
     >
       <div

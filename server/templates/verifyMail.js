@@ -1,3 +1,5 @@
+const config = require("../config");
+
 const verifyMail = ({ firstName, lastName, accessToken }) => {
   return `
     
@@ -478,7 +480,7 @@ const verifyMail = ({ firstName, lastName, accessToken }) => {
                                             "
                                           >
                                             <a
-                                              href="https://nobleedugroup-3ff8f.web.app/user/invitation?token=${accessToken}"
+                                              href="http://${config.CLIENTHOST}:${config.CLIENTPORT}/verify?token=${accessToken}"
                                               rel="noopener"
                                               style="
                                                 text-decoration: underline;

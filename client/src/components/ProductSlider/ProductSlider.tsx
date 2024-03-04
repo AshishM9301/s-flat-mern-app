@@ -20,29 +20,22 @@ const defaultProps: Props = {
 };
 
 const ProductSlider = (props: Props) => {
-  const isDesktopOrLaptop = useMediaQuery({
-    query: "(min-width: 1224px)",
-  });
-  const isBigScreen = useMediaQuery({ query: "(min-width: 1824px)" });
-  const isTablet = useMediaQuery({ query: "(min-width: 1000px)" });
-  const isMobile = useMediaQuery({ query: "(max-width:500px)" });
-  const isPortrait = useMediaQuery({ query: "(orientation: portrait)" });
-  const isRetina = useMediaQuery({ query: "(min-resolution: 2dppx)" });
-
   const [products, setProducts] = useState<ProductCard[][]>();
 
   const changeListing = (arr = props.arr) => {
-    const no = props?.listNo ? props?.listNo : isTablet ? 6 : 4;
+    const no = 5;
+    let netArr = arr.slice(0, 10);
     const result = [];
+
     do {
-      if (arr.length >= no) {
-        result.push(arr.slice(0, no));
-        arr = arr.slice(no);
+      if (netArr.length >= no) {
+        result.push(netArr.slice(0, no));
+        netArr = netArr.slice(no);
       } else {
-        result.push(arr);
-        arr = [];
+        result.push(netArr);
+        netArr = [];
       }
-    } while (arr.length > 0);
+    } while (netArr.length > 0);
 
     setProducts(result);
 
@@ -62,6 +55,7 @@ const ProductSlider = (props: Props) => {
     arrows: true,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
+    speed: 1000,
   };
 
   return (

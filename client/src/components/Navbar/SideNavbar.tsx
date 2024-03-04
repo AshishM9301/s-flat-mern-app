@@ -85,7 +85,13 @@ const SideNavbar = (props: Props) => {
               <img src={logo} />
             </Link>
             <div className={!open ? styles.open_button : styles.close_button}>
-              <button onClick={() => setOpen(!open)}>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+
+                  setOpen(!open);
+                }}
+              >
                 <FontAwesomeIcon
                   icon={!open ? faChevronRight : faChevronLeft}
                   color="#000"
@@ -96,7 +102,7 @@ const SideNavbar = (props: Props) => {
           <div className={styles.sidebar_menu}>
             {menus.map((item, index) => (
               <SideBarMenuItem
-                key={index.toString()}
+                key={index.toString() + item.title}
                 title={item.title}
                 icon={item.icon}
                 submenu={item.submenu}

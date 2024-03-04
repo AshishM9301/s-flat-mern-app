@@ -12,7 +12,7 @@ const NewProductSlider = () => {
           <p>see all products</p>
         </div>
       </div>
-      <div>
+      <div className={styles.sliderContainer}>
         <ProductSlider
           arr={[
             {

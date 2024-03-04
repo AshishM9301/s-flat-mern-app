@@ -1,45 +1,55 @@
-
 import React, { useState } from "react";
 import Slider from "react-slick";
 type Props = { images: Array<{ imgUrl: string }> };
 
-const ImageSlider = (props: Props) => {
+const ImageSlider = ({ images }: Props) => {
   const [settings, setSettings] = useState({
     infinite: true,
     speed: 500,
   });
 
-  console.log("Img length", props?.images.length);
-
-
-const ImageSlider = ({ images }: Props) => {
   return (
     <div className="slider-container">
-      {props.images.length >= 2 ? (
+      {images.length >= 2 ? (
         <Slider {...settings}>
-          {props.images.map((item, index) => (
-            <div key={index.toString()}>
+          {images.map((item, index) => (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              key={index.toString()}
+            >
               <img
                 src={item?.imgUrl}
                 style={{
-                  width: "100%",
-                  maxHeight: 400,
-                  borderRadius: 6,
+                  width: 150,
+                  maxHeight: 150,
+                  maxWidth: "100%",
                   objectFit: "cover",
+                  margin: "0 auto",
                 }}
               />
             </div>
           ))}
         </Slider>
       ) : (
-        <div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <img
-            src={props.images[0]?.imgUrl}
+            src={images[0]?.imgUrl}
             style={{
-              width: "100%",
-              maxHeight: 400,
-              borderRadius: 6,
+              width: 150,
+              maxHeight: 150,
+              maxWidth: "100%",
               objectFit: "cover",
+              margin: "0 auto",
             }}
           />
         </div>

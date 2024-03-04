@@ -26,7 +26,7 @@ const VerifyPage = (props: Props) => {
 
   const verifyUser = async () => {
     try {
-      let token = location.search.replace("?token=", "");
+      const token = location?.search?.replace("?token=", "");
       console.log(token);
       if (!token) {
         throw new Error("Token not provided");

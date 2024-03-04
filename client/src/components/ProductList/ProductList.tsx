@@ -13,7 +13,7 @@ const ProductList = ({ products }: Props) => {
       {products.map((item, index) => (
         <div key={index.toString()} className={styles.cardContainer}>
           <Card
-            inStock={"3"}
+            inStock={"2"}
             images={[
               {
                 imgUrl:
